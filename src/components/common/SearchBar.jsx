@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Search, X } from 'lucide-react';
 
 /**
@@ -11,21 +11,25 @@ import { Search, X } from 'lucide-react';
  * @returns {React.JSX.Element} The rendered SearchBar component
  */
 export default function SearchBar({ value, onChange }) {
+  const [prevValue, setPrevValue] = useState(value);
   const [localValue, setLocalValue] = useState(value);
 
-  // Sync local value with prop value
-  useEffect(() => {
+  // Sync local value with prop value during rendering to avoid effect warnings
+  if (value !== prevValue) {
+    setPrevValue(value);
     setLocalValue(value);
-  }, [value]);
+  }
 
   // Debounced search handler
   useEffect(() => {
     const timer = setTimeout(() => {
-      onChange(localValue);
+      if (localValue !== value) {
+        onChange(localValue);
+      }
     }, 300);
 
     return () => clearTimeout(timer);
-  }, [localValue, onChange]);
+  }, [localValue, onChange, value]);
 
   // Handle clear button click
   const handleClear = () => {
@@ -42,7 +46,7 @@ export default function SearchBar({ value, onChange }) {
         value={localValue}
         onChange={(e) => setLocalValue(e.target.value)}
         aria-label="Search leads"
-        className="w-full pl-9 pr-10 py-2.5 bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 rounded-xl outline-none focus:border-blue-500 dark:focus:border-blue-500/80 text-slate-800 dark:text-slate-100 placeholder-slate-400 transition-all"
+        className="w-full pl-9 pr-10 py-2.5 bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 rounded-xl outline-none focus:border-blue-500 dark:focus:border-blue-500/80 text-slate-800 dark:text-slate-100 placeholder-slate-400 transition-all text-xs"
       />
       {localValue && (
         <button

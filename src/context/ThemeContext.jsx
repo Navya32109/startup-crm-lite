@@ -1,34 +1,29 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import { createContext, useContext, useEffect } from 'react';
+import useLocalStorage from '../hooks/useLocalStorage';
 
 const ThemeContext = createContext();
 
 export const ThemeProvider = ({ children }) => {
-  const [theme, setTheme] = useState(() => {
-    // Check local storage first
-    const savedTheme = localStorage.getItem('crm-theme');
-    if (savedTheme) return savedTheme;
-    
+  const [isDarkMode, setIsDarkMode] = useLocalStorage('startup-crm-theme', () => {
     // Fallback to system preference
-    const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    return systemPrefersDark ? 'dark' : 'light';
+    return typeof window !== 'undefined' && window.matchMedia('(prefers-color-scheme: dark)').matches;
   });
 
   useEffect(() => {
     const root = window.document.documentElement;
-    if (theme === 'dark') {
+    if (isDarkMode) {
       root.classList.add('dark');
     } else {
       root.classList.remove('dark');
     }
-    localStorage.setItem('crm-theme', theme);
-  }, [theme]);
+  }, [isDarkMode]);
 
   const toggleTheme = () => {
-    setTheme(prevTheme => (prevTheme === 'light' ? 'dark' : 'light'));
+    setIsDarkMode(prev => !prev);
   };
 
   return (
-    <ThemeContext.Provider value={{ theme, toggleTheme, isDark: theme === 'dark' }}>
+    <ThemeContext.Provider value={{ theme: isDarkMode ? 'dark' : 'light', toggleTheme, isDark: isDarkMode }}>
       {children}
     </ThemeContext.Provider>
   );

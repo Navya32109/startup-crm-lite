@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 // Import global leads state hook to connect Leads page straight to CRM context
 import { useLeads } from '../context/LeadContext';
 // Import child modular layout components
-import StatusBadge from '../components/leads/StatusBadge';
 import LeadForm from '../components/leads/LeadForm';
 import LeadCard from '../components/leads/LeadCard';
 import LeadTable from '../components/leads/LeadTable';
@@ -13,11 +12,6 @@ import {
   Plus, 
   Grid, 
   List, 
-  Search, 
-  Filter, 
-  FolderDown, 
-  TrendingUp,
-  Inbox,
   X
 } from 'lucide-react';
 // Import new search and filter components
@@ -108,11 +102,24 @@ export default function Leads() {
 
   // Filter leads dynamically based on search query and active filter
   const filteredLeads = leads
-    .filter(lead => activeFilter === 'All' || lead.status === activeFilter)
+    .filter(lead => {
+      if (activeFilter === 'All') return true;
+
+      const filterMap = {
+        'Meeting Scheduled': ['Meeting Scheduled', 'Qualified'],
+        'Proposal Sent': ['Proposal Sent', 'Proposal', 'Negotiation']
+      };
+
+      if (filterMap[activeFilter]) {
+        return lead.status && filterMap[activeFilter].includes(lead.status);
+      }
+
+      return lead.status === activeFilter;
+    })
     .filter(lead => 
-      lead.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
-      lead.company.toLowerCase().includes(searchQuery.toLowerCase()) || 
-      lead.email.toLowerCase().includes(searchQuery.toLowerCase()) 
+      (lead.name || '').toLowerCase().includes(searchQuery.toLowerCase()) || 
+      (lead.company || '').toLowerCase().includes(searchQuery.toLowerCase()) || 
+      (lead.email || '').toLowerCase().includes(searchQuery.toLowerCase()) 
     );
 
   return (
@@ -131,8 +138,8 @@ export default function Leads() {
 
         {/* View togglers and action buttons */}
         <div className="flex items-center gap-3">
-          {/* Layout view switcher (hidden on mobile since cards stack on small viewports) */}
-          <div className="bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-0.5 rounded-lg flex items-center shadow-inner">
+          {/* Layout view switcher (hidden on mobile and desktop, visible only on tablet) */}
+          <div className="hidden md:flex lg:hidden bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-0.5 rounded-lg items-center shadow-inner">
             <button 
               onClick={() => setViewType('board')}
               className={`p-1.5 rounded-md cursor-pointer transition-all ${
@@ -181,10 +188,6 @@ export default function Leads() {
       </div>
 
       {/* ================= CUSTOM VIEWPORTS SWITCH LIST ================= */}
-      {/* 
-        Responsive layout requirements: 
-        Cards stack on mobile, table displays on desktop viewports. 
-      */}
       <div className="relative">
         {filteredLeads.length === 0 ? (
           // Empty state component
@@ -195,64 +198,77 @@ export default function Leads() {
               setActiveFilter('All');
             }}
           />
-        ) : viewType === 'board' ? (
-          // Card Layout representation (mobile-responsive cards stack grid)
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {filteredLeads.map(lead => (
-              <LeadCard
-                key={lead.id}
-                lead={lead}
-                onEditClick={handleEditLeadClick}
-                onDeleteClick={handleDeleteLeadClick}
-              />
-            ))}
-          </div>
         ) : (
-          // Table layout representation (stacks as card grids on mobile screens)
-          <div>
-            {/* Desktop Table Viewport */}
-            <div className="hidden md:block">
+          <>
+            {/* Mobile Viewport (< md): Card view only (table is hidden) */}
+            <div className="block md:hidden">
+              <div className="grid grid-cols-1 gap-6">
+                {filteredLeads.map(lead => (
+                  <LeadCard
+                    key={lead.id}
+                    lead={lead}
+                    onEditClick={handleEditLeadClick}
+                    onDeleteClick={handleDeleteLeadClick}
+                  />
+                ))}
+              </div>
+            </div>
+
+            {/* Tablet Viewport (md to lg): Hybrid view toggled by viewType */}
+            <div className="hidden md:block lg:hidden">
+              {viewType === 'board' ? (
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  {filteredLeads.map(lead => (
+                    <LeadCard
+                      key={lead.id}
+                      lead={lead}
+                      onEditClick={handleEditLeadClick}
+                      onDeleteClick={handleDeleteLeadClick}
+                    />
+                  ))}
+                </div>
+              ) : (
+                <LeadTable
+                  leads={filteredLeads}
+                  onEditClick={handleEditLeadClick}
+                  onDeleteClick={handleDeleteLeadClick}
+                />
+              )}
+            </div>
+
+            {/* Desktop Viewport (>= lg): Full table view with all columns visible */}
+            <div className="hidden lg:block">
               <LeadTable
                 leads={filteredLeads}
                 onEditClick={handleEditLeadClick}
                 onDeleteClick={handleDeleteLeadClick}
               />
             </div>
-            
-            {/* Mobile Fallback: table transforms into card grids automatically on screens < 768px */}
-            <div className="block md:hidden grid grid-cols-1 gap-4">
-              {filteredLeads.map(lead => (
-                <LeadCard
-                  key={lead.id}
-                  lead={lead}
-                  onEditClick={handleEditLeadClick}
-                  onDeleteClick={handleDeleteLeadClick}
-                />
-              ))}
-            </div>
-          </div>
+          </>
         )}
       </div>
 
       {/* ================= CREATE / EDIT FORM POPUP MODAL ================= */}
       {isModalOpen && (
-        <div className="fixed inset-0 z-50 overflow-y-auto flex items-center justify-center p-4">
-          {/* Modal semi-transparent blur overlay */}
+        <div className="fixed inset-0 z-50 overflow-y-auto flex items-center justify-center md:p-4">
+          {/* Modal semi-transparent blur overlay (only shown on md+) */}
           <div 
-            className="fixed inset-0 bg-slate-900/40 dark:bg-black/60 backdrop-blur-sm transition-opacity"
+            className="fixed inset-0 bg-slate-900/40 dark:bg-black/60 backdrop-blur-sm transition-opacity hidden md:block"
             onClick={() => setIsModalOpen(false)}
           ></div>
 
           {/* Modal content container card sheet */}
-          <div className="relative bg-white dark:bg-[#13151d] border border-slate-205 dark:border-slate-800 w-full max-w-md rounded-2xl shadow-2xl overflow-hidden z-10 animate-scale-up">
+          {/* Mobile: full screen, no rounded corners, fills viewport. Tablet+: centered modal with max-w-lg */}
+          <div className="relative bg-white dark:bg-[#13151d] md:border md:border-slate-200 dark:md:border-slate-800 w-full min-h-screen md:min-h-0 md:max-w-lg md:rounded-2xl shadow-2xl overflow-y-auto md:overflow-hidden z-10 animate-scale-up flex flex-col">
             {/* Modal Header */}
-            <div className="px-6 py-4.5 border-b border-slate-100 dark:border-slate-850 flex items-center justify-between bg-slate-50/50 dark:bg-slate-900/10">
+            <div className="px-6 py-4.5 border-b border-slate-100 dark:border-slate-850 flex items-center justify-between bg-slate-50/50 dark:bg-slate-900/10 shrink-0">
               <h3 className="font-display font-black text-sm text-slate-900 dark:text-white">
                 {selectedLead ? `Edit Details: ${selectedLead.name}` : 'Introduce Opportunity Deal'}
               </h3>
+              {/* Close Button with >=44x44px tap target size */}
               <button 
                 onClick={() => setIsModalOpen(false)}
-                className="p-1 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full cursor-pointer transition-colors"
+                className="w-11 h-11 flex items-center justify-center text-slate-400 hover:text-slate-650 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full cursor-pointer transition-colors"
                 aria-label="Close form"
               >
                 <X size={15} />
@@ -260,7 +276,7 @@ export default function Leads() {
             </div>
 
             {/* Modal Scrollable Form Frame */}
-            <div className="p-6">
+            <div className="p-6 flex-1 overflow-y-auto">
               <LeadForm
                 initialData={selectedLead}
                 onSubmit={handleFormSubmit}

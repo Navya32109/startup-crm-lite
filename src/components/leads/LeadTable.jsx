@@ -50,10 +50,10 @@ export default function LeadTable({ leads = [], onEditClick, onDeleteClick }) {
               <th className="p-4">Name</th>
               <th className="p-4">Company</th>
               <th className="p-4">Stage Status</th>
-              <th className="p-4">Email Address</th>
-              <th className="p-4">Source</th>
+              <th className="p-4 hidden lg:table-cell">Email Address</th>
+              <th className="p-4 hidden lg:table-cell">Source</th>
               <th className="p-4 text-right">Value</th>
-              <th className="p-4">Created Date</th>
+              <th className="p-4 hidden lg:table-cell">Created Date</th>
               <th className="p-4 text-center">Actions</th>
             </tr>
           </thead>
@@ -90,7 +90,7 @@ export default function LeadTable({ leads = [], onEditClick, onDeleteClick }) {
                   </td>
                   
                   {/* Email */}
-                  <td className="p-4 font-mono select-all text-slate-500 dark:text-slate-400">
+                  <td className="p-4 font-mono select-all text-slate-500 dark:text-slate-400 hidden lg:table-cell">
                     <div className="flex items-center gap-1.5 min-w-0">
                       <Mail size={12} className="text-slate-400 shrink-0" />
                       <span>{lead.email}</span>
@@ -98,7 +98,7 @@ export default function LeadTable({ leads = [], onEditClick, onDeleteClick }) {
                   </td>
                   
                   {/* Source */}
-                  <td className="p-4">
+                  <td className="p-4 hidden lg:table-cell">
                     <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-slate-50 dark:bg-slate-850 text-slate-400 border border-slate-100 dark:border-slate-800">
                       {lead.source}
                     </span>
@@ -110,7 +110,7 @@ export default function LeadTable({ leads = [], onEditClick, onDeleteClick }) {
                   </td>
                   
                   {/* Date Created */}
-                  <td className="p-4 text-slate-450 dark:text-slate-500">
+                  <td className="p-4 text-slate-450 dark:text-slate-500 hidden lg:table-cell">
                     <div className="flex items-center gap-1.5">
                       <Calendar size={12} className="text-slate-400 shrink-0" />
                       <span>{lead.createdDate}</span>

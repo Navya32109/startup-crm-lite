@@ -154,7 +154,7 @@ export default function Dashboard() {
 
       {/* ================= STATS CARD GRID ================= */}
       {/* Requirements: 1 column on mobile, 2 on tablet, 4 on desktop */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         
         {/* Card 1: Total leads count */}
         <StatsCard
@@ -198,18 +198,18 @@ export default function Dashboard() {
       <PipelineOverview leads={leads} />
 
       {/* ================= DATA GRID ROW ================= */}
-      {/* Two columns layout on large screens, single column on tablets/mobile */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      {/* Requirements: Full width charts/visuals on mobile & tablet, 2 column grid on desktop */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         
-        {/* Left Column (2/3 width) - Recent Leads Table */}
-        <div className="lg:col-span-2">
+        {/* Left Column - Recent Leads Table */}
+        <div>
           <RecentLeads 
             leads={leads} 
             onSelectLead={handleSelectLeadRow}
           />
         </div>
 
-        {/* Right Column (1/3 width) - Quick Database Workflows */}
+        {/* Right Column - Quick Database Workflows */}
         <div>
           <QuickActions
             onAddLeadClick={handleAddNewLeadClick}
