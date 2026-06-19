@@ -70,30 +70,30 @@ export default function PipelineOverview({ leads = [] }) {
   });
 
   return (
-    <div className="bg-white dark:bg-[#13151d] border border-slate-200/80 dark:border-slate-800/80 rounded-2xl p-6 shadow-sm">
+    <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6 shadow-sm">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-6">
         <div>
-          <h3 className="font-display font-bold text-base text-slate-900 dark:text-white">
+          <h3 className="font-display font-bold text-base text-gray-900 dark:text-white">
             Pipeline stage overview
           </h3>
-          <p className="text-xs text-slate-400 dark:text-slate-500">
+          <p className="text-xs text-gray-500 dark:text-gray-400">
             Valuation density distributed across active CRM deal flows
           </p>
         </div>
         <div className="text-right">
-          <span className="block text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider">
+          <span className="block text-[10px] font-bold text-gray-400 dark:text-gray-500 uppercase tracking-wider">
             Active Pipeline Value
           </span>
-          <span className="text-lg font-black text-slate-900 dark:text-white font-mono">
+          <span className="text-lg font-black text-gray-900 dark:text-white font-mono">
             ${totalValuation.toLocaleString()}
           </span>
         </div>
       </div>
 
       {/* Segmented Horizontal Progress Bar */}
-      <div className="h-4 w-full bg-slate-100 dark:bg-slate-800 rounded-full flex overflow-hidden shadow-inner mb-6">
+      <div className="h-4 w-full bg-gray-100 dark:bg-gray-700 rounded-full flex overflow-hidden shadow-inner mb-6">
         {totalValuation === 0 ? (
-          <div className="h-full w-full bg-slate-200 dark:bg-slate-800 animate-pulse"></div>
+          <div className="h-full w-full bg-gray-200 dark:bg-gray-800 animate-pulse"></div>
         ) : (
           stageMetrics
             .filter(metric => metric.key !== 'Lost' && metric.value > 0)
@@ -113,22 +113,22 @@ export default function PipelineOverview({ leads = [] }) {
         {stageMetrics.map(metric => (
           <div 
             key={metric.key} 
-            className="p-3 bg-slate-50/50 dark:bg-slate-900/10 border border-slate-100 dark:border-slate-850/60 rounded-xl space-y-1 transition-all hover:bg-slate-100/40 dark:hover:bg-slate-900/30"
+            className="p-3 bg-gray-50/50 dark:bg-gray-900/30 border border-gray-200 dark:border-gray-700/60 rounded-xl space-y-1 transition-all hover:bg-gray-100/40 dark:hover:bg-gray-900/50"
           >
             {/* Color Indicator Dot and Title */}
             <div className="flex items-center gap-1.5 min-w-0">
               <span className={`h-2 w-2 rounded-full shrink-0 ${metric.colorBg}`}></span>
-              <span className="text-[10px] font-bold text-slate-700 dark:text-slate-300 truncate">
+              <span className="text-[10px] font-bold text-gray-750 dark:text-gray-300 truncate">
                 {metric.label}
               </span>
             </div>
 
             {/* Counts Badge and Value */}
             <div className="space-y-0.5">
-              <p className="text-xs font-bold text-slate-900 dark:text-white font-mono truncate">
+              <p className="text-xs font-bold text-gray-900 dark:text-white font-mono truncate">
                 ${metric.value.toLocaleString()}
               </p>
-              <span className="text-[9px] text-slate-400 dark:text-slate-500 block">
+              <span className="text-[9px] text-gray-400 dark:text-gray-500 block">
                 {metric.count} {metric.count === 1 ? 'lead' : 'leads'}
               </span>
             </div>

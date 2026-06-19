@@ -122,7 +122,7 @@ export default function Layout({ children }) {
 
   return (
     // Outer app viewport wrapper matching global canvas background and font styles
-    <div className="flex min-h-screen bg-slate-50 dark:bg-[#090a0f] text-slate-800 dark:text-slate-200 transition-colors duration-200">
+    <div className="flex min-h-screen bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-white transition-colors duration-200">
       
       {/* Sidebar Navigation component (Desktop + Mobile configurations) */}
       <Sidebar setIsSearchOpen={setIsSearchOpen} />
@@ -141,26 +141,26 @@ export default function Layout({ children }) {
       {isSearchOpen && (
         <div className="fixed inset-0 z-50 flex items-start justify-center pt-[15vh]">
           {/* Clickable backdrop overlay to close modal on background clicks */}
-          <div className="fixed inset-0 bg-slate-900/40 dark:bg-black/60 backdrop-blur-sm" onClick={() => setIsSearchOpen(false)}></div>
+          <div className="fixed inset-0 bg-gray-900/40 dark:bg-black/60 backdrop-blur-sm" onClick={() => setIsSearchOpen(false)}></div>
           
           {/* Search container popup card */}
-          <div className="relative w-full max-w-lg bg-white dark:bg-[#13151d] border border-slate-200 dark:border-slate-800 rounded-xl shadow-2xl overflow-hidden mx-4 animate-scale-up">
+          <div className="relative w-full max-w-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl shadow-2xl overflow-hidden mx-4 animate-scale-up">
             
             {/* Search Input Bar row */}
-            <div className="flex items-center gap-3 px-4 border-b border-slate-100 dark:border-slate-800">
-              <Search size={18} className="text-slate-400 dark:text-slate-500" />
+            <div className="flex items-center gap-3 px-4 border-b border-gray-150 dark:border-gray-750">
+              <Search size={18} className="text-gray-400 dark:text-gray-500" />
               <input
                 ref={searchInputRef}
                 type="text"
                 placeholder="Search leads, status, companies..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="flex-1 py-3.5 text-sm outline-none text-slate-800 dark:text-slate-100 bg-transparent placeholder-slate-400"
+                className="flex-1 py-3.5 text-sm outline-none text-gray-950 dark:text-white bg-transparent placeholder-gray-400"
               />
               {/* ESC helper label button */}
               <button 
                 onClick={() => setIsSearchOpen(false)}
-                className="text-xs text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 bg-slate-50 dark:bg-slate-850 px-2 py-1 rounded border border-slate-200 dark:border-slate-700/60 shadow-sm cursor-pointer"
+                className="text-xs text-gray-500 hover:text-gray-700 dark:hover:text-gray-200 bg-gray-50 dark:bg-gray-900 px-2 py-1 rounded border border-gray-200 dark:border-gray-700 shadow-sm cursor-pointer"
               >
                 ESC
               </button>
@@ -170,32 +170,32 @@ export default function Layout({ children }) {
             <div className="p-2 max-h-80 overflow-y-auto">
               {searchQuery.trim() === '' ? (
                 // Initial prompt layout helper
-                <div className="py-8 text-center text-xs text-slate-400 dark:text-slate-500">
-                  <Command size={24} className="mx-auto mb-2 text-slate-350 dark:text-slate-650 opacity-60" />
+                <div className="py-8 text-center text-xs text-gray-400 dark:text-gray-550">
+                  <Command size={24} className="mx-auto mb-2 text-gray-350 dark:text-gray-650 opacity-60" />
                   <p>Type to search leads...</p>
-                  <p className="mt-1 text-[10px] text-slate-355 dark:text-slate-600">Tip: search "Referral", "Won", or "Stark"</p>
+                  <p className="mt-1 text-[10px] text-gray-450 dark:text-gray-500">Tip: search "Referral", "Won", or "Stark"</p>
                 </div>
               ) : filteredLeads.length === 0 ? (
                 // Empty search results layout helper
-                <div className="py-8 text-center text-xs text-slate-400 dark:text-slate-550">
+                <div className="py-8 text-center text-xs text-gray-400 dark:text-gray-550">
                   No matching leads found for "{searchQuery}"
                 </div>
               ) : (
                 // List search results matching leads queries
                 <div className="space-y-1">
-                  <p className="text-[10px] font-bold text-slate-400 dark:text-slate-500 px-3 uppercase tracking-wider mb-2">Leads Matches</p>
+                  <p className="text-[10px] font-bold text-gray-450 dark:text-gray-500 px-3 uppercase tracking-wider mb-2">Leads Matches</p>
                   {filteredLeads.map((lead) => (
                     <button
                       key={lead.id}
                       onClick={() => handleSearchSelect(lead.id)}
-                      className="w-full flex items-center justify-between text-left p-3 hover:bg-slate-50 dark:hover:bg-slate-800/40 rounded-lg cursor-pointer transition-all"
+                      className="w-full flex items-center justify-between text-left p-3 hover:bg-gray-50 dark:hover:bg-gray-900/40 rounded-lg cursor-pointer transition-all"
                     >
                       <div>
-                        <p className="text-sm font-medium text-slate-900 dark:text-white">{lead.name}</p>
-                        <p className="text-xs text-slate-400 dark:text-slate-500">{lead.company} • {lead.email}</p>
+                        <p className="text-sm font-medium text-gray-950 dark:text-white">{lead.name}</p>
+                        <p className="text-xs text-gray-400 dark:text-gray-500">{lead.company} • {lead.email}</p>
                       </div>
                       <div className="flex items-center gap-2">
-                        <span className="text-xs font-semibold text-slate-900 dark:text-slate-350">
+                        <span className="text-xs font-semibold text-gray-950 dark:text-gray-300 font-mono">
                           ${lead.value.toLocaleString()}
                         </span>
                         {/* Dynamic status badges colored based on deal states */}
@@ -215,13 +215,13 @@ export default function Layout({ children }) {
             </div>
 
             {/* Bottom Keyboard Shortcuts Helper Info footer */}
-            <div className="flex items-center justify-between px-4 py-2.5 bg-slate-50/50 dark:bg-slate-900/30 border-t border-slate-100 dark:border-slate-800 text-[10px] text-slate-400 dark:text-slate-550">
+            <div className="flex items-center justify-between px-4 py-2.5 bg-gray-55/50 dark:bg-gray-900/30 border-t border-gray-150 dark:border-gray-750 text-[10px] text-gray-450 dark:text-gray-400">
               <span className="flex items-center gap-1">
                 <span>Select lead to open drawer detail</span>
               </span>
               <span className="flex items-center gap-1.5 font-mono">
                 <span>Navigate pages: </span>
-                <kbd className="px-1.5 py-0.5 bg-white dark:bg-[#13151d] border border-slate-200 dark:border-slate-800 rounded">G</kbd> then <kbd className="px-1.5 py-0.5 bg-white dark:bg-[#13151d] border border-slate-200 dark:border-slate-800 rounded">D/L/A</kbd>
+                <kbd className="px-1.5 py-0.5 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded">G</kbd> then <kbd className="px-1.5 py-0.5 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded">D/L/A</kbd>
               </span>
             </div>
           </div>

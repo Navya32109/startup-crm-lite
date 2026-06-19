@@ -18,11 +18,11 @@ const PageLoader = () => (
   <div className="flex flex-col items-center justify-center min-h-[50vh] w-full gap-4">
     {/* Animated spinning loader ring with accent colors */}
     <div className="relative flex items-center justify-center">
-      <div className="h-12 w-12 rounded-full border-4 border-slate-200 dark:border-slate-800 border-t-blue-600 dark:border-t-blue-500 animate-spin"></div>
+      <div className="h-12 w-12 rounded-full border-4 border-gray-200 dark:border-gray-700 border-t-blue-600 dark:border-t-blue-500 animate-spin"></div>
       <div className="absolute h-4 w-4 rounded-full bg-blue-600/30 dark:bg-blue-500/20 animate-ping"></div>
     </div>
     {/* Micro loading label */}
-    <span className="text-xs font-semibold tracking-wider text-slate-400 dark:text-slate-500 uppercase select-none">
+    <span className="text-xs font-semibold tracking-wider text-gray-400 dark:text-gray-500 uppercase select-none">
       Loading CRM Module...
     </span>
   </div>

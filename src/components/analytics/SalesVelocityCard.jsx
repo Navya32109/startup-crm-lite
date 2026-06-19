@@ -66,7 +66,7 @@ export default function SalesVelocityCard({ data = {}, prevData = {} }) {
   };
 
   return (
-    <div className="bg-white dark:bg-[#13151d] border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between h-[360px] relative overflow-hidden group">
+    <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between h-[360px] relative overflow-hidden group">
       
       {/* Background Glow Effect */}
       <div className="absolute -right-12 -top-12 w-24 h-24 bg-blue-500/5 rounded-full blur-2xl group-hover:scale-150 transition-all duration-700"></div>
@@ -75,10 +75,10 @@ export default function SalesVelocityCard({ data = {}, prevData = {} }) {
       <div>
         <div className="flex justify-between items-start">
           <div>
-            <h3 className="font-display font-bold text-slate-900 dark:text-white text-sm">
+            <h3 className="font-display font-bold text-gray-900 dark:text-white text-sm">
               Sales Velocity Index
             </h3>
-            <p className="text-[10px] text-slate-450 dark:text-slate-500">
+            <p className="text-[10px] text-gray-500 dark:text-gray-400">
               Rate of pipeline conversion measured in average revenue realized per day.
             </p>
           </div>
@@ -89,24 +89,24 @@ export default function SalesVelocityCard({ data = {}, prevData = {} }) {
 
         {/* Main Indicator */}
         <div className="mt-4 flex items-baseline gap-2 select-none">
-          <span className="text-2xl font-display font-black text-slate-900 dark:text-white tracking-tight">
+          <span className="text-2xl font-display font-black text-gray-900 dark:text-white tracking-tight">
             {formatINR(velocity)}
           </span>
-          <span className="text-[10px] text-slate-450 dark:text-slate-550 font-bold uppercase">
+          <span className="text-[10px] text-gray-400 dark:text-gray-500 font-bold uppercase">
             / Day
           </span>
         </div>
 
         <div className="flex items-center gap-2 mt-1.5 select-none">
           {renderTrendBadge()}
-          <span className="text-[9px] text-slate-400 dark:text-slate-550 font-medium">
+          <span className="text-[9px] text-gray-450 dark:text-gray-500 font-medium">
             vs previous period
           </span>
         </div>
       </div>
 
       {/* Equation Variables Subgrid */}
-      <div className="border-t border-b border-slate-100 dark:border-slate-850/80 py-4 my-auto select-none text-[11px]">
+      <div className="border-t border-b border-gray-200 dark:border-gray-700 py-4 my-auto select-none text-[11px]">
         <div className="grid grid-cols-2 gap-4">
           
           <div className="space-y-1">

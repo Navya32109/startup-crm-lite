@@ -38,10 +38,10 @@ export default function FilterBar({ activeFilter, onFilterChange, leads }) {
           <button
             key={filter}
             onClick={() => onFilterChange(filter)}
-            className={`px-3 py-1.5 rounded-xl text-[11px] font-bold cursor-pointer transition-all duration-200 ${
+            className={`px-3.5 py-2.5 md:px-3 md:py-1.5 rounded-xl text-[11px] font-bold cursor-pointer transition-all duration-200 ${
               isActive
                 ? 'bg-blue-600 text-white shadow-md shadow-blue-500/20 scale-100'
-                : 'bg-slate-50 dark:bg-slate-900/30 text-slate-650 dark:text-slate-405 hover:bg-slate-100 dark:hover:bg-slate-900/50 border border-slate-200 dark:border-slate-800 hover:scale-[1.02] active:scale-95'
+                : 'bg-gray-50 dark:bg-gray-900/30 text-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-900/50 border border-gray-200 dark:border-gray-700 hover:scale-[1.02] active:scale-95'
             }`}
           >
             {filter} <span className="opacity-80">({count})</span>

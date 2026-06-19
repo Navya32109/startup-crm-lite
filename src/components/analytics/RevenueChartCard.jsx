@@ -38,8 +38,8 @@ const CustomTooltip = ({ active, payload }) => {
     }).format(payload[0].value);
 
     return (
-      <div className="bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 p-3 rounded-xl shadow-xl text-[11px] animate-fade-in select-none">
-        <p className="font-extrabold text-slate-950 dark:text-white uppercase tracking-wide">
+      <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 p-3 rounded-xl shadow-xl text-[11px] animate-fade-in select-none">
+        <p className="font-extrabold text-gray-950 dark:text-white uppercase tracking-wide">
           {data.name} Revenue
         </p>
         <p className="text-emerald-650 dark:text-emerald-450 font-black text-xs mt-1">
@@ -66,14 +66,14 @@ export default function RevenueChartCard({ data = [] }) {
   const hasData = data && data.length > 0 && data.some(d => d.revenue > 0);
 
   return (
-    <div className="bg-white dark:bg-[#13151d] border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between h-[360px]">
+    <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between h-[360px]">
       
       {/* Panel Header */}
       <div>
-        <h3 className="font-display font-bold text-slate-900 dark:text-white text-sm">
+        <h3 className="font-display font-bold text-gray-900 dark:text-white text-sm">
           Won Revenue Growth
         </h3>
-        <p className="text-[10px] text-slate-450 dark:text-slate-500">
+        <p className="text-[10px] text-gray-500 dark:text-gray-400">
           Monthly realization values aggregated from closed-won client accounts.
         </p>
       </div>

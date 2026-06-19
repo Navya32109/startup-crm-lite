@@ -35,7 +35,7 @@ function App() {
             // Configure custom dark mode styling properties for popup boxes
             toastOptions={{
               // Apply rounded dark slate cards styling on dark mode
-              className: 'dark:bg-slate-900 dark:text-white dark:border dark:border-slate-800',
+              className: 'dark:bg-gray-900 dark:text-white dark:border dark:border-gray-700',
               // Display notifications on the screen for 3 seconds (3000ms)
               duration: 3000,
             }}

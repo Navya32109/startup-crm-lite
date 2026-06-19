@@ -18,12 +18,12 @@ import { Plus, Users, Download } from 'lucide-react';
  */
 export default function QuickActions({ onAddLeadClick, onViewAllClick, onExportClick }) {
   return (
-    <div className="bg-white dark:bg-[#13151d] border border-slate-200/80 dark:border-slate-800/80 rounded-2xl p-6 shadow-sm flex flex-col h-full justify-between">
+    <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6 shadow-sm flex flex-col h-full justify-between">
       <div className="mb-6">
-        <h3 className="font-display font-bold text-base text-slate-900 dark:text-white">
+        <h3 className="font-display font-bold text-base text-gray-900 dark:text-white">
           Quick workflow
         </h3>
-        <p className="text-xs text-slate-400 dark:text-slate-500">
+        <p className="text-xs text-gray-500 dark:text-gray-400">
           Core database actions to expedite lead prospecting operations
         </p>
       </div>
@@ -41,16 +41,16 @@ export default function QuickActions({ onAddLeadClick, onViewAllClick, onExportC
         {/* Action 2: View All Leads */}
         <button
           onClick={onViewAllClick}
-          className="w-full bg-slate-100 hover:bg-slate-200 dark:bg-slate-800/80 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-350 text-xs font-semibold py-3 px-4 rounded-xl border border-slate-200 dark:border-slate-700/60 cursor-pointer active:scale-98 transition-all flex items-center justify-center gap-2"
+          className="w-full bg-gray-100 hover:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-200 text-xs font-semibold py-3 px-4 rounded-xl border border-gray-200 dark:border-gray-700 cursor-pointer active:scale-98 transition-all flex items-center justify-center gap-2"
         >
-          <Users size={16} className="text-slate-400 dark:text-slate-500" />
+          <Users size={16} className="text-gray-400 dark:text-gray-500" />
           <span>View All Leads</span>
         </button>
 
         {/* Action 3: Export Data */}
         <button
           onClick={onExportClick}
-          className="w-full bg-transparent hover:bg-slate-50 dark:hover:bg-slate-900/40 text-slate-500 dark:text-slate-400 text-xs font-semibold py-3 px-4 rounded-xl border border-dashed border-slate-250 dark:border-slate-800 cursor-pointer active:scale-98 transition-all flex items-center justify-center gap-2"
+          className="w-full bg-transparent hover:bg-gray-50 dark:hover:bg-gray-900/40 text-gray-550 dark:text-gray-400 text-xs font-semibold py-3 px-4 rounded-xl border border-dashed border-gray-200 dark:border-gray-700 cursor-pointer active:scale-98 transition-all flex items-center justify-center gap-2"
         >
           <Download size={16} />
           <span>Export CRM CSV</span>

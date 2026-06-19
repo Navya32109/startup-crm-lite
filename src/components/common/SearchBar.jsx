@@ -39,19 +39,19 @@ export default function SearchBar({ value, onChange }) {
 
   return (
     <div className="relative flex-1 max-w-md">
-      <Search size={14} className="absolute left-3.5 top-3.5 text-slate-400 dark:text-slate-500" />
+      <Search size={14} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400 dark:text-gray-500" />
       <input
         type="text"
         placeholder="Search by name, company, or email..."
         value={localValue}
         onChange={(e) => setLocalValue(e.target.value)}
         aria-label="Search leads"
-        className="w-full pl-9 pr-10 py-2.5 bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 rounded-xl outline-none focus:border-blue-500 dark:focus:border-blue-500/80 text-slate-800 dark:text-slate-100 placeholder-slate-400 transition-all text-xs"
+        className="w-full pl-9 pr-10 py-3 md:py-2.5 bg-gray-50 dark:bg-gray-900/50 border border-gray-205 dark:border-gray-700 rounded-xl outline-none focus:border-blue-500 dark:focus:border-blue-500/80 text-gray-800 dark:text-gray-100 placeholder-gray-400 transition-all text-xs"
       />
       {localValue && (
         <button
           onClick={handleClear}
-          className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors cursor-pointer"
+          className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-205 transition-colors cursor-pointer"
           aria-label="Clear search"
         >
           <X size={14} />

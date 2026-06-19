@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { X, Save, AlertCircle } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { Save, AlertCircle } from 'lucide-react';
 
 /**
  * @typedef {Object} LeadFormProps
@@ -105,7 +105,7 @@ export default function LeadForm({ initialData, onSubmit, onCancel }) {
       
       {/* Name Input */}
       <div>
-        <label className="block text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider mb-1">
+        <label className="block text-[10px] font-bold text-gray-450 dark:text-gray-500 uppercase tracking-wider mb-1">
           Prospect Name <span className="text-[#EF4444]">*</span>
         </label>
         <input
@@ -116,8 +116,8 @@ export default function LeadForm({ initialData, onSubmit, onCancel }) {
             if (errors.name) setErrors(prev => ({ ...prev, name: null }));
           }}
           placeholder="e.g. John Doe"
-          className={`w-full px-3.5 py-2.5 bg-slate-50 dark:bg-slate-900/50 border rounded-xl outline-none focus:ring-2 focus:ring-blue-500/20 text-slate-800 dark:text-slate-100 placeholder-slate-400/80 transition-all ${
-            errors.name ? 'border-[#EF4444] focus:border-[#EF4444]' : 'border-slate-200 dark:border-slate-800 focus:border-blue-500 dark:focus:border-blue-500/80'
+          className={`w-full px-3.5 py-3 md:py-2.5 bg-gray-50 dark:bg-gray-900 border rounded-xl outline-none focus:ring-2 focus:ring-blue-500/20 text-gray-900 dark:text-white placeholder-gray-400/80 transition-all ${
+            errors.name ? 'border-[#EF4444] focus:border-[#EF4444]' : 'border-gray-200 dark:border-gray-700 focus:border-blue-500 dark:focus:border-blue-500/80'
           }`}
           aria-invalid={errors.name ? 'true' : 'false'}
         />
@@ -130,7 +130,7 @@ export default function LeadForm({ initialData, onSubmit, onCancel }) {
 
       {/* Company Input */}
       <div>
-        <label className="block text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider mb-1">
+        <label className="block text-[10px] font-bold text-gray-455 dark:text-gray-500 uppercase tracking-wider mb-1">
           Company Name <span className="text-[#EF4444]">*</span>
         </label>
         <input
@@ -141,8 +141,8 @@ export default function LeadForm({ initialData, onSubmit, onCancel }) {
             if (errors.company) setErrors(prev => ({ ...prev, company: null }));
           }}
           placeholder="e.g. Acme Corp"
-          className={`w-full px-3.5 py-2.5 bg-slate-50 dark:bg-slate-900/50 border rounded-xl outline-none focus:ring-2 focus:ring-blue-500/20 text-slate-800 dark:text-slate-100 placeholder-slate-400/80 transition-all ${
-            errors.company ? 'border-[#EF4444] focus:border-[#EF4444]' : 'border-slate-200 dark:border-slate-800 focus:border-blue-500 dark:focus:border-blue-500/80'
+          className={`w-full px-3.5 py-3 md:py-2.5 bg-gray-50 dark:bg-gray-900 border rounded-xl outline-none focus:ring-2 focus:ring-blue-500/20 text-gray-900 dark:text-white placeholder-gray-400/80 transition-all ${
+            errors.company ? 'border-[#EF4444] focus:border-[#EF4444]' : 'border-gray-200 dark:border-gray-700 focus:border-blue-500 dark:focus:border-blue-500/80'
           }`}
           aria-invalid={errors.company ? 'true' : 'false'}
         />
@@ -155,7 +155,7 @@ export default function LeadForm({ initialData, onSubmit, onCancel }) {
 
       {/* Email Input */}
       <div>
-        <label className="block text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider mb-1">
+        <label className="block text-[10px] font-bold text-gray-455 dark:text-gray-500 uppercase tracking-wider mb-1">
           Email Address <span className="text-[#EF4444]">*</span>
         </label>
         <input
@@ -166,8 +166,8 @@ export default function LeadForm({ initialData, onSubmit, onCancel }) {
             if (errors.email) setErrors(prev => ({ ...prev, email: null }));
           }}
           placeholder="john.doe@company.com"
-          className={`w-full px-3.5 py-2.5 bg-slate-50 dark:bg-slate-900/50 border rounded-xl outline-none focus:ring-2 focus:ring-blue-500/20 text-slate-800 dark:text-slate-100 placeholder-slate-400/80 transition-all ${
-            errors.email ? 'border-[#EF4444] focus:border-[#EF4444]' : 'border-slate-200 dark:border-slate-800 focus:border-blue-500 dark:focus:border-blue-500/80'
+          className={`w-full px-3.5 py-3 md:py-2.5 bg-gray-50 dark:bg-gray-900 border rounded-xl outline-none focus:ring-2 focus:ring-blue-500/20 text-gray-900 dark:text-white placeholder-gray-400/80 transition-all ${
+            errors.email ? 'border-[#EF4444] focus:border-[#EF4444]' : 'border-gray-200 dark:border-gray-700 focus:border-blue-500 dark:focus:border-blue-500/80'
           }`}
           aria-invalid={errors.email ? 'true' : 'false'}
         />
@@ -180,7 +180,7 @@ export default function LeadForm({ initialData, onSubmit, onCancel }) {
 
       {/* Phone Input */}
       <div>
-        <label className="block text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider mb-1">
+        <label className="block text-[10px] font-bold text-gray-455 dark:text-gray-500 uppercase tracking-wider mb-1">
           Phone Number
         </label>
         <input
@@ -188,7 +188,7 @@ export default function LeadForm({ initialData, onSubmit, onCancel }) {
           value={phone}
           onChange={(e) => setPhone(e.target.value)}
           placeholder="+1 (555) 000-0000"
-          className="w-full px-3.5 py-2.5 bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 rounded-xl outline-none focus:border-blue-500 dark:focus:border-blue-500/80 focus:ring-2 focus:ring-blue-500/20 text-slate-800 dark:text-slate-100 placeholder-slate-400/80 transition-all"
+          className="w-full px-3.5 py-3 md:py-2.5 bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-xl outline-none focus:border-blue-500 dark:focus:border-blue-500/80 focus:ring-2 focus:ring-blue-500/20 text-gray-900 dark:text-white placeholder-gray-400/80 transition-all"
         />
       </div>
 
@@ -196,32 +196,32 @@ export default function LeadForm({ initialData, onSubmit, onCancel }) {
       <div className="grid grid-cols-2 gap-4">
         {/* Status Dropdown */}
         <div>
-          <label className="block text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider mb-1">
+          <label className="block text-[10px] font-bold text-gray-455 dark:text-gray-500 uppercase tracking-wider mb-1">
             Stage Status
           </label>
           <select
             value={status}
             onChange={(e) => setStatus(e.target.value)}
-            className="w-full px-3 py-2.5 bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 rounded-xl outline-none focus:border-blue-500 dark:focus:border-blue-500/80 text-slate-850 dark:text-slate-200 cursor-pointer"
+            className="w-full px-3 py-3 md:py-2.5 bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-xl outline-none focus:border-blue-500 dark:focus:border-blue-500/80 text-gray-900 dark:text-white cursor-pointer"
           >
             {statusOptions.map(option => (
-              <option key={option} value={option}>{option}</option>
+              <option key={option} value={option} className="bg-white dark:bg-gray-800 text-gray-900 dark:text-white">{option}</option>
             ))}
           </select>
         </div>
 
         {/* Source Dropdown */}
         <div>
-          <label className="block text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider mb-1">
+          <label className="block text-[10px] font-bold text-gray-455 dark:text-gray-500 uppercase tracking-wider mb-1">
             Referral Source
           </label>
           <select
             value={source}
             onChange={(e) => setSource(e.target.value)}
-            className="w-full px-3 py-2.5 bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 rounded-xl outline-none focus:border-blue-500 dark:focus:border-blue-500/80 text-slate-850 dark:text-slate-200 cursor-pointer"
+            className="w-full px-3 py-3 md:py-2.5 bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-xl outline-none focus:border-blue-500 dark:focus:border-blue-500/80 text-gray-900 dark:text-white cursor-pointer"
           >
             {sourceOptions.map(option => (
-              <option key={option} value={option}>{option}</option>
+              <option key={option} value={option} className="bg-white dark:bg-gray-800 text-gray-900 dark:text-white">{option}</option>
             ))}
           </select>
         </div>
@@ -229,7 +229,7 @@ export default function LeadForm({ initialData, onSubmit, onCancel }) {
 
       {/* Value Input */}
       <div>
-        <label className="block text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider mb-1">
+        <label className="block text-[10px] font-bold text-gray-455 dark:text-gray-500 uppercase tracking-wider mb-1">
           Pipeline Deal Value ($)
         </label>
         <input
@@ -237,22 +237,22 @@ export default function LeadForm({ initialData, onSubmit, onCancel }) {
           value={value}
           onChange={(e) => setValue(e.target.value)}
           placeholder="e.g. 25000"
-          className="w-full px-3.5 py-2.5 bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 rounded-xl outline-none focus:border-blue-500 dark:focus:border-blue-500/80 focus:ring-2 focus:ring-blue-500/20 text-slate-800 dark:text-slate-100 placeholder-slate-400/80 transition-all"
+          className="w-full px-3.5 py-3 md:py-2.5 bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-xl outline-none focus:border-blue-500 dark:focus:border-blue-500/80 focus:ring-2 focus:ring-blue-500/20 text-gray-900 dark:text-white placeholder-gray-400/80 transition-all"
         />
       </div>
 
       {/* Actions Buttons Container */}
-      <div className="flex items-center justify-end gap-3 pt-4 border-t border-slate-100 dark:border-slate-850/80">
+      <div className="flex items-center justify-end gap-3 pt-4 border-t border-gray-200 dark:border-gray-700">
         <button
           type="button"
           onClick={onCancel}
-          className="px-4 py-2.5 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800/80 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-350 font-semibold rounded-xl border border-slate-200 dark:border-slate-700/60 cursor-pointer active:scale-95 transition-all text-xs"
+          className="px-5 py-3 md:px-4 md:py-2.5 bg-gray-100 hover:bg-gray-200 dark:bg-gray-750 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-200 font-semibold rounded-xl border border-gray-200 dark:border-gray-700 cursor-pointer active:scale-95 transition-all text-xs animate-none"
         >
           Cancel
         </button>
         <button
           type="submit"
-          className="px-4 py-2.5 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-xl cursor-pointer shadow-md shadow-blue-500/10 hover:shadow-blue-500/20 active:scale-95 transition-all text-xs flex items-center gap-1.5"
+          className="px-5 py-3 md:px-4 md:py-2.5 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-xl cursor-pointer shadow-md shadow-blue-500/10 hover:shadow-blue-500/20 active:scale-95 transition-all text-xs flex items-center gap-1.5"
         >
           <Save size={14} />
           <span>{initialData ? 'Save Changes' : 'Create Lead'}</span>

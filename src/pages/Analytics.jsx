@@ -47,11 +47,11 @@ export default function Analytics() {
       {/* ================= PAGE HEADER ROW ================= */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-display font-black tracking-tight text-slate-900 dark:text-white flex items-center gap-2">
+          <h1 className="text-3xl font-display font-black tracking-tight text-gray-900 dark:text-white flex items-center gap-2">
             <BarChart3 className="text-blue-600 dark:text-blue-500 shrink-0" size={28} />
             Analytics Dashboard
           </h1>
-          <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
+          <p className="text-xs text-gray-500 dark:text-gray-440 mt-1">
             Track sales performance, growth trends, team velocity, and revenue forecasting metrics.
           </p>
         </div>

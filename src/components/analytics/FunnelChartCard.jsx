@@ -16,11 +16,11 @@ const CustomTooltip = ({ active, payload }) => {
   if (active && payload && payload.length) {
     const data = payload[0].payload;
     return (
-      <div className="bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 p-3 rounded-xl shadow-xl text-[11px] animate-fade-in select-none">
-        <p className="font-extrabold text-slate-950 dark:text-white uppercase tracking-wide">
+      <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 p-3 rounded-xl shadow-xl text-[11px] animate-fade-in select-none">
+        <p className="font-extrabold text-gray-900 dark:text-white uppercase tracking-wide">
           {data.stage}
         </p>
-        <p className="text-slate-550 dark:text-slate-400 mt-1 font-semibold">
+        <p className="text-gray-500 dark:text-gray-400 mt-1 font-semibold">
           Count: {data.count} {data.count === 1 ? 'Opportunity' : 'Opportunities'}
         </p>
         <p className="text-blue-600 dark:text-blue-400 font-black text-xs mt-0.5">
@@ -63,21 +63,21 @@ export default function FunnelChartCard({ data = [] }) {
   const hasData = data && data.length > 0 && data.some(d => d.count > 0);
 
   return (
-    <div className="bg-white dark:bg-[#13151d] border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between h-[360px]">
+    <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between h-auto min-h-[360px] md:h-[360px]">
       
       {/* Panel Header */}
       <div>
-        <h3 className="font-display font-bold text-slate-900 dark:text-white text-sm">
+        <h3 className="font-display font-bold text-gray-900 dark:text-white text-sm">
           Sales Funnel Performance
         </h3>
-        <p className="text-[10px] text-slate-450 dark:text-slate-500">
+        <p className="text-[10px] text-gray-500 dark:text-gray-450">
           Conversion velocity and drop-off ratios at each milestone stage.
         </p>
       </div>
 
       {!hasData ? (
-        <div className="flex flex-col items-center justify-center h-48 text-slate-400 dark:text-slate-600 select-none">
-          <Layers size={28} className="mb-2 text-slate-300 dark:text-slate-700" />
+        <div className="flex flex-col items-center justify-center h-48 text-gray-400 dark:text-gray-500 select-none">
+          <Layers size={28} className="mb-2 text-gray-300 dark:text-gray-600" />
           <span className="text-xs font-semibold uppercase tracking-wider text-slate-400">No funnel data</span>
         </div>
       ) : (
@@ -112,7 +112,7 @@ export default function FunnelChartCard({ data = [] }) {
             {mappedData.map((item, idx) => (
               <div 
                 key={item.stage} 
-                className="flex flex-col p-2 bg-slate-50/50 dark:bg-slate-900/40 border border-slate-100 dark:border-slate-850/80 rounded-xl"
+                className="flex flex-col p-2 bg-gray-50/50 dark:bg-gray-700/40 border border-gray-150 dark:border-gray-750/80 rounded-xl"
               >
                 <div className="flex items-center justify-between font-semibold">
                   <div className="flex items-center gap-1.5 truncate">
@@ -120,16 +120,16 @@ export default function FunnelChartCard({ data = [] }) {
                       className="h-2 w-2 rounded-full shrink-0 animate-pulse" 
                       style={{ backgroundColor: item.color }}
                     ></span>
-                    <span className="text-slate-700 dark:text-slate-300 truncate">
+                    <span className="text-gray-700 dark:text-gray-300 truncate">
                       {item.stage}
                     </span>
                   </div>
-                  <span className="font-display font-black text-slate-900 dark:text-white">
+                  <span className="font-display font-black text-gray-900 dark:text-white">
                     {item.count}
                   </span>
                 </div>
                 
-                <div className="flex items-center justify-between text-[10px] text-slate-400 dark:text-slate-500 mt-1 font-medium">
+                <div className="flex items-center justify-between text-[10px] text-gray-450 dark:text-gray-500 mt-1 font-medium">
                   <span>Conv: <strong className="text-blue-600 dark:text-blue-400">{item.conversionRate}%</strong></span>
                   {idx > 0 && (
                     <span>Drop-off: <strong className="text-rose-600 dark:text-rose-400">{item.dropOffRate}%</strong></span>

@@ -49,7 +49,7 @@ export default function ForecastCard({ data = {} }) {
       );
     }
     return (
-      <span className="inline-flex items-center gap-1 text-slate-500 dark:text-slate-400 font-extrabold text-[10px] bg-slate-500/10 dark:bg-slate-900/40 px-2 py-0.5 rounded-full border border-slate-500/10">
+      <span className="inline-flex items-center gap-1 text-gray-500 dark:text-gray-400 font-extrabold text-[10px] bg-gray-500/10 dark:bg-gray-750/20 px-2 py-0.5 rounded-full border border-gray-500/10">
         <Minus size={11} />
         Flat Trend
       </span>
@@ -66,7 +66,7 @@ export default function ForecastCard({ data = {} }) {
   const confidence = getConfidenceLevel(confidenceScore);
 
   return (
-    <div className="bg-white dark:bg-[#13151d] border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between h-[360px] relative overflow-hidden group">
+    <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between h-[360px] relative overflow-hidden group">
       
       {/* Sparkles Background Icon Glow */}
       <div className="absolute -right-10 -bottom-10 w-32 h-32 text-blue-500/5 rotate-12 transition-transform duration-700 group-hover:scale-125 group-hover:rotate-45 pointer-events-none">
@@ -77,10 +77,10 @@ export default function ForecastCard({ data = {} }) {
       <div>
         <div className="flex justify-between items-start">
           <div>
-            <h3 className="font-display font-bold text-slate-900 dark:text-white text-sm">
+            <h3 className="font-display font-bold text-gray-900 dark:text-white text-sm">
               Revenue Growth Forecast
             </h3>
-            <p className="text-[10px] text-slate-450 dark:text-slate-500">
+            <p className="text-[10px] text-gray-500 dark:text-gray-450">
               Predictive revenue modeling built on historical won accounts trajectory.
             </p>
           </div>
@@ -91,10 +91,10 @@ export default function ForecastCard({ data = {} }) {
 
         {/* Forecast Value Indicator */}
         <div className="mt-5 space-y-1">
-          <span className="block text-[9px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider">
+          <span className="block text-[9px] font-bold text-gray-400 dark:text-gray-550 uppercase tracking-wider">
             Predicted Revenue Next Month
           </span>
-          <p className="text-3xl font-display font-black text-slate-900 dark:text-white tracking-tight">
+          <p className="text-3xl font-display font-black text-gray-900 dark:text-white tracking-tight">
             {formatINR(predictedRevenue)}
           </p>
         </div>
@@ -107,7 +107,7 @@ export default function ForecastCard({ data = {} }) {
       {/* Confidence Score Gauge */}
       <div className="space-y-2 my-auto select-none pt-4 pb-2">
         <div className="flex justify-between items-center text-[10px] font-bold">
-          <span className="text-slate-450 dark:text-slate-500 uppercase tracking-wider flex items-center gap-1">
+          <span className="text-gray-500 dark:text-gray-450 uppercase tracking-wider flex items-center gap-1">
             <ShieldCheck size={13} className="text-blue-500" />
             Forecast Confidence
           </span>
@@ -117,7 +117,7 @@ export default function ForecastCard({ data = {} }) {
         </div>
         
         {/* Horizontal gauge bar */}
-        <div className="h-2 w-full bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
+        <div className="h-2 w-full bg-gray-100 dark:bg-gray-700 rounded-full overflow-hidden">
           <div 
             className={`h-full rounded-full transition-all duration-1000 ${
               confidenceScore >= 85 ? 'bg-emerald-500' : confidenceScore >= 70 ? 'bg-blue-600' : 'bg-amber-550'
@@ -128,8 +128,8 @@ export default function ForecastCard({ data = {} }) {
       </div>
 
       {/* Forecast Explainer Footer */}
-      <div className="flex items-center gap-1.5 text-[9px] text-slate-450 dark:text-slate-500 font-semibold select-none pt-2 border-t border-slate-100 dark:border-slate-850/60">
-        <Info size={11} className="shrink-0 text-slate-350 dark:text-slate-650" />
+      <div className="flex items-center gap-1.5 text-[9px] text-gray-500 dark:text-gray-450 font-semibold select-none pt-2 border-t border-gray-100 dark:border-gray-700/60">
+        <Info size={11} className="shrink-0 text-gray-300 dark:text-gray-600" />
         <span>Calculated as the trailing 6-month average of Won revenue deals.</span>
       </div>
 

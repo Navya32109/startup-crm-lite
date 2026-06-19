@@ -51,7 +51,7 @@ export default function ActivityHeatmap({ data = {} }) {
 
   // Determine cell color based on activity density
   const getCellColorClass = (count) => {
-    if (count === 0) return 'bg-slate-100 dark:bg-slate-850 border-transparent';
+    if (count === 0) return 'bg-gray-100 dark:bg-gray-700/60 border-transparent';
     if (count <= 2) return 'bg-blue-500/20 dark:bg-blue-500/25 border-blue-500/10';
     if (count <= 4) return 'bg-blue-500/45 dark:bg-blue-500/50 border-blue-500/20';
     if (count <= 6) return 'bg-blue-500/70 dark:bg-blue-500/75 border-blue-500/30';
@@ -86,19 +86,19 @@ export default function ActivityHeatmap({ data = {} }) {
   };
 
   return (
-    <div className="bg-white dark:bg-[#13151d] border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between h-[360px]">
+    <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between h-[360px]">
       
       {/* Panel Header */}
       <div className="flex justify-between items-start">
         <div>
-          <h3 className="font-display font-bold text-slate-900 dark:text-white text-sm">
+          <h3 className="font-display font-bold text-gray-900 dark:text-white text-sm">
             Activity Heatmap
           </h3>
-          <p className="text-[10px] text-slate-450 dark:text-slate-500">
+          <p className="text-[10px] text-gray-500 dark:text-gray-455">
             Daily logs of leads added, meetings, and outbound client communication logs.
           </p>
         </div>
-        <div className="text-slate-400 hover:text-slate-550 cursor-pointer" title="Green represents more activities logged on that calendar date">
+        <div className="text-gray-400 hover:text-gray-500 cursor-pointer" title="Green represents more activities logged on that calendar date">
           <Info size={14} />
         </div>
       </div>
@@ -126,7 +126,7 @@ export default function ActivityHeatmap({ data = {} }) {
           <div className="flex gap-2">
             
             {/* Days Column Labels */}
-            <div className="flex flex-col justify-between text-[9px] font-bold text-slate-400 dark:text-slate-500 w-6 h-28 pr-1 uppercase text-right py-0.5">
+            <div className="flex flex-col justify-between text-[9px] font-bold text-gray-400 dark:text-gray-500 w-6 h-28 pr-1 uppercase text-right py-0.5">
               <span>Sun</span>
               <span>Tue</span>
               <span>Thu</span>
@@ -146,8 +146,8 @@ export default function ActivityHeatmap({ data = {} }) {
                         onMouseLeave={handleMouseLeave}
                         className={`w-3.5 h-3.5 rounded border transition-all duration-200 ${
                           isFuture 
-                            ? 'bg-slate-50 dark:bg-slate-900/20 border-slate-100 dark:border-slate-850/20 cursor-not-allowed' 
-                            : `${getCellColorClass(cell.count)} border hover:scale-125 hover:border-slate-400/50 dark:hover:border-slate-500 cursor-pointer`
+                            ? 'bg-gray-50 dark:bg-gray-900/20 border-gray-100 dark:border-gray-750/20 cursor-not-allowed' 
+                            : `${getCellColorClass(cell.count)} border hover:scale-125 hover:border-gray-400/50 dark:hover:border-gray-500 cursor-pointer`
                         }`}
                       ></div>
                     );
@@ -162,7 +162,7 @@ export default function ActivityHeatmap({ data = {} }) {
         {/* Floating Custom Tooltip */}
         {hoveredCell && (
           <div 
-            className="absolute bg-white dark:bg-slate-950 border border-slate-205 dark:border-slate-800 p-3 rounded-xl shadow-xl text-[10px] w-48 z-10 pointer-events-none transition-all duration-150 animate-scale-up"
+            className="absolute bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 p-3 rounded-xl shadow-xl text-[10px] w-48 z-10 pointer-events-none transition-all duration-150 animate-scale-up"
             style={{
               left: `${hoveredCell.x}px`,
               top: `${hoveredCell.y}px`,
@@ -170,12 +170,12 @@ export default function ActivityHeatmap({ data = {} }) {
             }}
           >
             {/* Arrow */}
-            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-full w-2 h-2 bg-white dark:bg-slate-950 border-r border-b border-slate-200 dark:border-slate-800 rotate-45"></div>
+            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-full w-2 h-2 bg-white dark:bg-gray-900 border-r border-b border-gray-200 dark:border-gray-700 rotate-45"></div>
 
-            <p className="font-extrabold text-slate-950 dark:text-white border-b border-slate-100 dark:border-slate-850 pb-1.5">
+            <p className="font-extrabold text-gray-900 dark:text-white border-b border-gray-100 dark:border-gray-700 pb-1.5">
               {hoveredCell.date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
             </p>
-            <div className="mt-1.5 space-y-1 text-slate-600 dark:text-slate-400 font-semibold">
+            <div className="mt-1.5 space-y-1 text-gray-600 dark:text-gray-400 font-semibold">
               <div className="flex justify-between">
                 <span>Leads Created:</span>
                 <span className="font-black text-blue-600 dark:text-blue-400">{hoveredCell.details.created}</span>
@@ -188,7 +188,7 @@ export default function ActivityHeatmap({ data = {} }) {
                 <span>Communication Logs:</span>
                 <span className="font-black text-emerald-600 dark:text-emerald-400">{hoveredCell.details.calls}</span>
               </div>
-              <div className="flex justify-between border-t border-slate-100 dark:border-slate-850 pt-1 mt-1 text-[11px] font-bold text-slate-900 dark:text-white">
+              <div className="flex justify-between border-t border-gray-100 dark:border-gray-700 pt-1 mt-1 text-[11px] font-bold text-gray-900 dark:text-white">
                 <span>Total Actions:</span>
                 <span>{hoveredCell.count}</span>
               </div>
@@ -198,11 +198,11 @@ export default function ActivityHeatmap({ data = {} }) {
       </div>
 
       {/* Heatmap Legend */}
-      <div className="flex justify-between items-center text-[10px] text-slate-400 dark:text-slate-500 font-semibold select-none pt-2 border-t border-slate-100 dark:border-slate-850/60">
+      <div className="flex justify-between items-center text-[10px] text-gray-400 dark:text-gray-500 font-semibold select-none pt-2 border-t border-gray-100 dark:border-gray-700/60">
         <span>Recent 16 Weeks Activity</span>
         <div className="flex items-center gap-1.5">
           <span>Less</span>
-          <span className="w-2.5 h-2.5 rounded bg-slate-100 dark:bg-slate-850"></span>
+          <span className="w-2.5 h-2.5 rounded bg-gray-100 dark:bg-gray-700"></span>
           <span className="w-2.5 h-2.5 rounded bg-blue-500/20 dark:bg-blue-500/25"></span>
           <span className="w-2.5 h-2.5 rounded bg-blue-500/45 dark:bg-blue-500/50"></span>
           <span className="w-2.5 h-2.5 rounded bg-blue-500/70 dark:bg-blue-500/75"></span>

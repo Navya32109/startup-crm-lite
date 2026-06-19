@@ -55,7 +55,7 @@ export default function StatsCard({ title, value, icon: Icon, change, color }) {
   const isPositive = !change.startsWith('-');
 
   return (
-    <div className={`relative overflow-hidden rounded-2xl border bg-white p-6 shadow-sm transition-all duration-300 dark:bg-[#13151d] group hover:shadow-md ${activeColor.border} ${activeColor.hoverGlow}`}>
+    <div className={`relative overflow-hidden rounded-2xl border border-gray-200 dark:border-gray-700 bg-white p-6 shadow-sm transition-all duration-300 dark:bg-gray-800 group hover:shadow-md ${activeColor.border} ${activeColor.hoverGlow}`}>
       {/* Decorative top corner hover glow circle */}
       <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-transparent to-slate-100/10 dark:to-white/5 rounded-full pointer-events-none transition-opacity duration-300"></div>
 

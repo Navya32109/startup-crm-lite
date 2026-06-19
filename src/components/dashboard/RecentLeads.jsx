@@ -69,12 +69,12 @@ export default function RecentLeads({ leads = [], onSelectLead }) {
   };
 
   return (
-    <div className="bg-white dark:bg-[#13151d] border border-slate-200/80 dark:border-slate-800/80 rounded-2xl p-6 shadow-sm overflow-hidden flex flex-col h-full justify-between">
+    <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6 shadow-sm overflow-hidden flex flex-col h-full justify-between">
       <div className="mb-6">
-        <h3 className="font-display font-bold text-base text-slate-900 dark:text-white">
+        <h3 className="font-display font-bold text-base text-gray-900 dark:text-white">
           Recent prospects
         </h3>
-        <p className="text-xs text-slate-400 dark:text-slate-500">
+        <p className="text-xs text-gray-500 dark:text-gray-400">
           The last 5 deal acquisitions introduced into the CRM database
         </p>
       </div>
@@ -82,17 +82,17 @@ export default function RecentLeads({ leads = [], onSelectLead }) {
       <div className="flex-1 overflow-x-auto">
         <table className="w-full text-left border-collapse text-xs">
           <thead>
-            <tr className="border-b border-slate-100 dark:border-slate-800 text-slate-400 dark:text-slate-500 font-bold">
+            <tr className="border-b border-gray-200 dark:border-gray-700 text-gray-500 dark:text-gray-400 font-bold">
               <th className="pb-3 pr-2">Prospect</th>
               <th className="pb-3 pr-2">Company</th>
               <th className="pb-3 pr-2">Stage Status</th>
               <th className="pb-3 text-right">Value</th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-slate-100/60 dark:divide-slate-800/60 text-slate-700 dark:text-slate-350">
+          <tbody className="divide-y divide-gray-200/60 dark:divide-gray-700/60 text-gray-700 dark:text-gray-300">
             {recentLeads.length === 0 ? (
               <tr>
-                <td colSpan="4" className="py-6 text-center text-slate-400 select-none">
+                <td colSpan="4" className="py-6 text-center text-gray-400 select-none">
                   No active prospects found
                 </td>
               </tr>
@@ -100,11 +100,11 @@ export default function RecentLeads({ leads = [], onSelectLead }) {
               recentLeads.map((lead) => (
                 <tr 
                   key={lead.id} 
-                  className="hover:bg-slate-50/50 dark:hover:bg-slate-900/15 transition-colors group cursor-pointer"
+                  className="hover:bg-gray-50/50 dark:hover:bg-gray-900/15 transition-colors group cursor-pointer"
                   onClick={() => onSelectLead && onSelectLead(lead.id)}
                 >
                   {/* Lead Name with Hover highlighting */}
-                  <td className="py-3.5 pr-2 font-bold text-slate-950 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                  <td className="py-3.5 pr-2 font-bold text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
                     {lead.name}
                   </td>
                   {/* Company */}
@@ -118,7 +118,7 @@ export default function RecentLeads({ leads = [], onSelectLead }) {
                     </span>
                   </td>
                   {/* Deal Value */}
-                  <td className="py-3.5 font-bold text-slate-900 dark:text-slate-200 text-right font-mono">
+                  <td className="py-3.5 font-bold text-gray-900 dark:text-white text-right font-mono">
                     ${lead.value.toLocaleString()}
                   </td>
                 </tr>

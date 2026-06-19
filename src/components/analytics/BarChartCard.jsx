@@ -19,8 +19,8 @@ const CustomTooltip = ({ active, payload }) => {
   if (active && payload && payload.length) {
     const data = payload[0].payload;
     return (
-      <div className="bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 p-3 rounded-xl shadow-xl text-[11px] animate-fade-in select-none">
-        <p className="font-extrabold text-slate-950 dark:text-white uppercase tracking-wide">
+      <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 p-3 rounded-xl shadow-xl text-[11px] animate-fade-in select-none">
+        <p className="font-extrabold text-gray-900 dark:text-white uppercase tracking-wide">
           {data.name}
         </p>
         <p className="text-blue-600 dark:text-blue-400 font-black text-xs mt-1">
@@ -40,28 +40,28 @@ export default function BarChartCard({ data = [] }) {
   const { isDark } = useTheme();
 
   // Dynamic theme colors
-  const textColor = isDark ? '#94A3B8' : '#64748B';
-  const gridColor = isDark ? '#1E293B' : '#F1F5F9';
+  const textColor = isDark ? '#9CA3AF' : '#6B7280';
+  const gridColor = isDark ? '#374151' : '#F3F4F6';
   const barColor = STATUS_COLORS.Contacted; // Primary Blue: #2563EB
 
   const hasData = data && data.length > 0 && data.some(d => d.count > 0);
 
   return (
-    <div className="bg-white dark:bg-[#13151d] border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between h-[360px]">
+    <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between h-[360px]">
       
       {/* Panel Header */}
       <div>
-        <h3 className="font-display font-bold text-slate-900 dark:text-white text-sm">
+        <h3 className="font-display font-bold text-gray-900 dark:text-white text-sm">
           Monthly Leads Intake
         </h3>
-        <p className="text-[10px] text-slate-450 dark:text-slate-500">
+        <p className="text-[10px] text-gray-500 dark:text-gray-450">
           Inbound client registration counts grouped by creation month history.
         </p>
       </div>
 
       {!hasData ? (
-        <div className="flex flex-col items-center justify-center h-56 text-slate-400 dark:text-slate-600 select-none">
-          <Calendar size={28} className="mb-2 text-slate-300 dark:text-slate-700" />
+        <div className="flex flex-col items-center justify-center h-56 text-gray-400 dark:text-gray-500 select-none">
+          <Calendar size={28} className="mb-2 text-gray-300 dark:text-gray-600" />
           <span className="text-xs font-semibold uppercase tracking-wider text-slate-400">No trend history</span>
         </div>
       ) : (
@@ -89,7 +89,7 @@ export default function BarChartCard({ data = [] }) {
                 tick={{ fill: textColor, fontSize: 10, fontWeight: 600 }} 
               />
               <Tooltip 
-                cursor={{ fill: isDark ? '#1e293b' : '#f8fafc', opacity: 0.3 }}
+                cursor={{ fill: isDark ? '#374151' : '#f3f4f6', opacity: 0.3 }}
                 content={<CustomTooltip />} 
               />
               <Bar 
@@ -106,7 +106,7 @@ export default function BarChartCard({ data = [] }) {
       )}
 
       {/* Summary Footer */}
-      <div className="flex justify-end text-[10px] text-slate-400 dark:text-slate-500 font-semibold select-none pt-2 border-t border-slate-100 dark:border-slate-850/60">
+      <div className="flex justify-end text-[10px] text-gray-400 dark:text-gray-500 font-semibold select-none pt-2 border-t border-gray-100 dark:border-gray-700/60">
         <span>Timeline: Last 6 Months</span>
       </div>
 

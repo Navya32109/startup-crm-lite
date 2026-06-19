@@ -158,7 +158,7 @@ export default function StatsCards({ stats, prevStats }) {
         return (
           <div 
             key={idx}
-            className="bg-white dark:bg-[#13151d] border border-slate-200 dark:border-slate-800/80 p-5 rounded-2xl flex flex-col justify-between shadow-sm hover:shadow-md transition-all duration-300 group"
+            className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 p-5 rounded-2xl flex flex-col justify-between shadow-sm hover:shadow-md transition-all duration-300 group"
           >
             <div className="flex justify-between items-start">
               <span className="text-[10px] font-bold text-slate-450 dark:text-slate-500 uppercase tracking-wider block">

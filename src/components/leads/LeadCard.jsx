@@ -41,39 +41,39 @@ import StatusBadge from './StatusBadge';
  */
 export default function LeadCard({ lead, onEditClick, onDeleteClick }) {
   return (
-    <div className="bg-white dark:bg-[#13151d] border border-slate-205 dark:border-slate-800 rounded-2xl p-5 shadow-sm hover:shadow-md transition-all duration-300 relative group flex flex-col justify-between min-h-[190px]">
+    <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-5 shadow-sm hover:shadow-md transition-all duration-300 relative group flex flex-col justify-between min-h-[190px]">
       
       {/* Top row: Name and Actions */}
       <div className="space-y-1 flex-1">
         <div className="flex justify-between items-start gap-4">
           {/* Prospect Name & Company */}
           <div className="min-w-0">
-            <h4 className="text-sm font-bold text-slate-950 dark:text-white truncate group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+            <h4 className="text-sm font-bold text-gray-900 dark:text-white truncate group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
               {lead.name}
             </h4>
-            <div className="flex items-center gap-1 text-[11px] text-slate-400 dark:text-slate-500 mt-0.5">
+            <div className="flex items-center gap-1 text-[11px] text-gray-400 dark:text-gray-500 mt-0.5">
               <Building2 size={12} className="shrink-0" />
               <span className="truncate">{lead.company}</span>
             </div>
           </div>
 
           {/* Inline Action Controls */}
-          <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+          <div className="flex items-center gap-1.5 lg:opacity-0 lg:group-hover:opacity-100 lg:transition-opacity shrink-0">
             <button
               onClick={() => onEditClick(lead)}
-              className="p-1.5 text-slate-400 hover:text-blue-600 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-lg cursor-pointer transition-colors"
+              className="w-11 h-11 lg:w-8 lg:h-8 flex items-center justify-center text-gray-400 hover:text-blue-600 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg cursor-pointer transition-colors"
               title="Edit Lead"
               aria-label={`Edit details for ${lead.name}`}
             >
-              <Edit2 size={13} />
+              <Edit2 size={15} className="lg:size-3.5" />
             </button>
             <button
               onClick={() => onDeleteClick(lead.id)}
-              className="p-1.5 text-slate-400 hover:text-rose-500 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-lg cursor-pointer transition-colors"
+              className="w-11 h-11 lg:w-8 lg:h-8 flex items-center justify-center text-gray-400 hover:text-rose-500 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg cursor-pointer transition-colors"
               title="Delete Lead"
               aria-label={`Delete ${lead.name} from records`}
             >
-              <Trash2 size={13} />
+              <Trash2 size={15} className="lg:size-3.5" />
             </button>
           </div>
         </div>
@@ -84,17 +84,17 @@ export default function LeadCard({ lead, onEditClick, onDeleteClick }) {
         </div>
 
         {/* Contact info grid */}
-        <div className="pt-4 space-y-2 text-[11px] text-slate-500 dark:text-slate-400">
+        <div className="pt-4 space-y-2 text-[11px] text-gray-500 dark:text-gray-405">
           {/* Email Row */}
           <div className="flex items-center gap-2 min-w-0 font-mono">
-            <Mail size={12} className="text-slate-450 dark:text-slate-500 shrink-0" />
+            <Mail size={12} className="text-gray-400 dark:text-gray-500 shrink-0" />
             <span className="truncate select-all" title={lead.email}>{lead.email}</span>
           </div>
 
           {/* Phone Row */}
           {lead.phone && (
             <div className="flex items-center gap-2 min-w-0 font-mono">
-              <Phone size={12} className="text-slate-450 dark:text-slate-500 shrink-0" />
+              <Phone size={12} className="text-gray-400 dark:text-gray-500 shrink-0" />
               <span className="truncate">{lead.phone}</span>
             </div>
           )}
@@ -102,11 +102,11 @@ export default function LeadCard({ lead, onEditClick, onDeleteClick }) {
       </div>
 
       {/* Footer valuation row */}
-      <div className="mt-4 pt-3 border-t border-slate-100 dark:border-slate-850 flex items-center justify-between">
-        <span className="text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wide">
+      <div className="mt-4 pt-3 border-t border-gray-200 dark:border-gray-700 flex items-center justify-between">
+        <span className="text-[10px] font-bold text-gray-400 dark:text-gray-500 uppercase tracking-wide">
           Valuation
         </span>
-        <span className="text-xs font-black text-slate-900 dark:text-slate-200 font-mono">
+        <span className="text-xs font-black text-gray-900 dark:text-white font-mono">
           ${lead.value ? lead.value.toLocaleString() : '0'}
         </span>
       </div>

@@ -146,7 +146,7 @@ export default function Dashboard() {
         {/* System Online Badge */}
         <div className="flex items-center gap-2 self-start md:self-center">
           <span className="flex h-2.5 w-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
-          <span className="text-[10px] font-bold tracking-wide text-slate-600 dark:text-slate-400 bg-white dark:bg-[#13151d] px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-800 shadow-sm">
+          <span className="text-[10px] font-bold tracking-wide text-gray-655 dark:text-gray-400 bg-white dark:bg-gray-800 px-3 py-1.5 rounded-lg border border-gray-200 dark:border-gray-700 shadow-sm">
             Live Synchronized
           </span>
         </div>

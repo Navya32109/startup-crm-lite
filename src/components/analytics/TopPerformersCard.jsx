@@ -35,32 +35,32 @@ export default function TopPerformersCard({ data = [] }) {
       case 0:
         return 'bg-amber-100 text-amber-700 dark:bg-amber-950/30 dark:text-amber-450 border-amber-200/50'; // Gold
       case 1:
-        return 'bg-slate-200/60 text-slate-700 dark:bg-slate-800/60 dark:text-slate-400 border-slate-300/30'; // Silver
+        return 'bg-gray-200/60 text-gray-700 dark:bg-gray-700/60 dark:text-gray-400 border-gray-305/30'; // Silver
       case 2:
         return 'bg-amber-700/10 text-amber-800 dark:bg-amber-900/10 dark:text-amber-500 border-amber-800/10'; // Bronze
       default:
-        return 'bg-slate-100 text-slate-500 dark:bg-slate-900 dark:text-slate-400 border-slate-200/10';
+        return 'bg-gray-100 text-gray-500 dark:bg-gray-900 dark:text-gray-450 border-gray-200/10';
     }
   };
 
   const getRankIcon = (index) => {
     if (index === 0) return <Trophy size={14} className="text-amber-500 shrink-0" />;
-    if (index === 1) return <Award size={14} className="text-slate-400 shrink-0" />;
+    if (index === 1) return <Award size={14} className="text-gray-400 shrink-0" />;
     if (index === 2) return <Award size={14} className="text-amber-700 shrink-0" />;
-    return <User size={13} className="text-slate-400 shrink-0" />;
+    return <User size={13} className="text-gray-400 shrink-0" />;
   };
 
   return (
-    <div className="bg-white dark:bg-[#13151d] border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between h-[360px]">
+    <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between h-[360px]">
       
       {/* Panel Header */}
       <div>
         <div className="flex justify-between items-start">
           <div>
-            <h3 className="font-display font-bold text-slate-900 dark:text-white text-sm">
+            <h3 className="font-display font-bold text-gray-900 dark:text-white text-sm">
               Top Sales Performers
             </h3>
-            <p className="text-[10px] text-slate-450 dark:text-slate-500">
+            <p className="text-[10px] text-gray-500 dark:text-gray-400">
               Ranked listing of sales representatives by total won revenue closed.
             </p>
           </div>
@@ -72,16 +72,16 @@ export default function TopPerformersCard({ data = [] }) {
 
       {/* Performers List Frame */}
       {!hasData ? (
-        <div className="flex flex-col items-center justify-center h-48 text-slate-400 dark:text-slate-600 select-none my-auto">
-          <Inbox size={28} className="mb-2 text-slate-300 dark:text-slate-700" />
-          <span className="text-xs font-semibold uppercase tracking-wider text-slate-400">No sales reps ranked</span>
+        <div className="flex flex-col items-center justify-center h-48 text-gray-400 dark:text-gray-650 select-none my-auto">
+          <Inbox size={28} className="mb-2 text-gray-300 dark:text-gray-700" />
+          <span className="text-xs font-semibold uppercase tracking-wider text-gray-450">No sales reps ranked</span>
         </div>
       ) : (
         <div className="space-y-3 my-auto overflow-y-auto max-h-[220px] pr-1 scrollbar-thin py-2">
           {activePerformers.map((rep, index) => (
             <div 
               key={rep.name}
-              className="flex items-center justify-between p-2.5 bg-slate-50/50 dark:bg-slate-900/40 border border-slate-100 dark:border-slate-850/80 rounded-xl select-none hover:border-slate-200 dark:hover:border-slate-800 transition-all duration-200"
+              className="flex items-center justify-between p-2.5 bg-gray-50/50 dark:bg-gray-900/40 border border-gray-200 dark:border-gray-700/60 rounded-xl select-none hover:border-gray-300 dark:hover:border-gray-600 transition-all duration-200"
             >
               <div className="flex items-center gap-3 truncate">
                 {/* Rank Badge */}
@@ -96,10 +96,10 @@ export default function TopPerformersCard({ data = [] }) {
 
                 {/* Rep Details */}
                 <div className="truncate">
-                  <span className="block font-bold text-slate-800 dark:text-slate-200 text-[11px] truncate">
+                  <span className="block font-bold text-gray-800 dark:text-gray-200 text-[11px] truncate">
                     {rep.name}
                   </span>
-                  <span className="text-[9px] text-slate-400 dark:text-slate-550 font-semibold block">
+                  <span className="text-[9px] text-gray-400 dark:text-gray-500 font-semibold block">
                     {rep.wonCount} {rep.wonCount === 1 ? 'deal won' : 'deals won'} ({rep.totalCount} total)
                   </span>
                 </div>
@@ -107,7 +107,7 @@ export default function TopPerformersCard({ data = [] }) {
 
               {/* Revenue Closed */}
               <div className="text-right shrink-0 pl-2">
-                <span className="block font-display font-black text-slate-900 dark:text-white text-xs">
+                <span className="block font-display font-black text-gray-900 dark:text-white text-xs">
                   {formatINR(rep.wonRevenue)}
                 </span>
                 {index === 0 && (
@@ -122,7 +122,7 @@ export default function TopPerformersCard({ data = [] }) {
       )}
 
       {/* Summary Footer */}
-      <div className="flex justify-between items-center text-[10px] text-slate-400 dark:text-slate-500 font-semibold select-none pt-2 border-t border-slate-100 dark:border-slate-850/60">
+      <div className="flex justify-between items-center text-[10px] text-gray-450 dark:text-gray-500 font-semibold select-none pt-2 border-t border-gray-200 dark:border-gray-700">
         <span>Metric: Closed Deals Value</span>
         <span className="flex items-center gap-0.5">
           {getRankIcon(0)} Leaderboard

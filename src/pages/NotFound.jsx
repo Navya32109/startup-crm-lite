@@ -23,7 +23,7 @@ export default function NotFound() {
         <div className="absolute -bottom-8 -right-4 w-72 h-72 bg-indigo-400/20 dark:bg-indigo-600/10 rounded-full blur-3xl -z-10 animate-pulse" style={{ animationDelay: '1.5s' }}></div>
 
         {/* main interactive glassmorphism card */}
-        <div className="bg-white/60 dark:bg-[#13151d]/60 backdrop-blur-xl border border-slate-200/80 dark:border-slate-800/80 rounded-3xl p-8 sm:p-12 shadow-2xl relative overflow-hidden transition-all duration-300">
+        <div className="bg-white/60 dark:bg-gray-800/60 backdrop-blur-xl border border-gray-200/80 dark:border-gray-700/80 rounded-3xl p-8 sm:p-12 shadow-2xl relative overflow-hidden transition-all duration-300">
           
           {/* Compass Icon containing micro-animation to indicate searching for a path */}
           <div className="mx-auto h-20 w-20 rounded-2xl bg-gradient-to-tr from-blue-600 to-indigo-600 flex items-center justify-center text-white shadow-xl shadow-blue-500/20 mb-8 animate-bounce" style={{ animationDuration: '3s' }}>
@@ -36,12 +36,12 @@ export default function NotFound() {
           </h1>
 
           {/* User-facing error message title */}
-          <h2 className="text-2xl font-bold tracking-tight text-slate-900 dark:text-white mt-4">
+          <h2 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white mt-4">
             Page Not Found
           </h2>
 
           {/* Explanatory description containing details of the mismatch */}
-          <p className="text-sm text-slate-500 dark:text-slate-400 mt-3 max-w-sm mx-auto leading-relaxed">
+          <p className="text-sm text-gray-500 dark:text-gray-400 mt-3 max-w-sm mx-auto leading-relaxed">
             The link you followed might be broken, or the page may have been removed. Let's get you back on track.
           </p>
 
@@ -60,7 +60,7 @@ export default function NotFound() {
             {/* Secondary Action Button: Back to the previous page */}
             <button
               onClick={() => window.history.back()}
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800/80 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-350 text-sm font-semibold px-6 py-3 rounded-xl border border-slate-200 dark:border-slate-700/60 cursor-pointer active:scale-95 transition-all"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-gray-100 hover:bg-gray-200 dark:bg-gray-800/80 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 text-sm font-semibold px-6 py-3 rounded-xl border border-gray-205 dark:border-gray-700 cursor-pointer active:scale-95 transition-all"
             >
               <ArrowLeft size={16} />
               <span>Go Back</span>
@@ -68,7 +68,7 @@ export default function NotFound() {
           </div>
 
           {/* Alert label indicator at the bottom */}
-          <div className="mt-8 flex items-center justify-center gap-2 text-xs text-slate-400 dark:text-slate-550 border-t border-slate-100 dark:border-slate-800/60 pt-6">
+          <div className="mt-8 flex items-center justify-center gap-2 text-xs text-gray-400 dark:text-gray-500 border-t border-gray-100 dark:border-gray-700/60 pt-6">
             <AlertTriangle size={12} className="text-amber-500/70" />
             <span>Path: {window.location.pathname}</span>
           </div>

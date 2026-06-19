@@ -70,7 +70,7 @@ export default function Leads() {
       // Red toast notification for deletions as requested
       toast.error(`${name} has been removed.`, {
         icon: '🗑️',
-        className: 'dark:bg-slate-900 dark:text-white dark:border dark:border-slate-800'
+        className: 'dark:bg-gray-900 dark:text-white dark:border dark:border-gray-700'
       });
     }
   };
@@ -86,14 +86,14 @@ export default function Leads() {
       updateLead(selectedLead.id, formData);
       toast.success(`${formData.name} updated successfully!`, {
         icon: '✅',
-        className: 'dark:bg-slate-900 dark:text-white dark:border dark:border-slate-800'
+        className: 'dark:bg-gray-900 dark:text-white dark:border dark:border-gray-700'
       });
     } else {
       // Create new lead record
       addLead(formData);
       toast.success(`New lead ${formData.name} created!`, {
         icon: '🎉',
-        className: 'dark:bg-slate-900 dark:text-white dark:border dark:border-slate-800'
+        className: 'dark:bg-gray-900 dark:text-white dark:border dark:border-gray-700'
       });
     }
     // Close modal form sheet
@@ -139,13 +139,13 @@ export default function Leads() {
         {/* View togglers and action buttons */}
         <div className="flex items-center gap-3">
           {/* Layout view switcher (hidden on mobile and desktop, visible only on tablet) */}
-          <div className="hidden md:flex lg:hidden bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-0.5 rounded-lg items-center shadow-inner">
+          <div className="hidden md:flex lg:hidden bg-gray-100 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 p-0.5 rounded-lg items-center shadow-inner">
             <button 
               onClick={() => setViewType('board')}
               className={`p-1.5 rounded-md cursor-pointer transition-all ${
                 viewType === 'board' 
-                  ? 'bg-white dark:bg-[#13151d] text-blue-600 dark:text-blue-400 shadow-sm border border-slate-200/20 dark:border-slate-800/40' 
-                  : 'text-slate-400 hover:text-slate-650 dark:hover:text-slate-200'
+                  ? 'bg-white dark:bg-gray-800 text-blue-600 dark:text-blue-400 shadow-sm border border-gray-200/20 dark:border-gray-700/40' 
+                  : 'text-gray-400 hover:text-gray-600 dark:hover:text-gray-200'
               }`}
               title="Grid Cards View"
             >
@@ -155,8 +155,8 @@ export default function Leads() {
               onClick={() => setViewType('list')}
               className={`p-1.5 rounded-md cursor-pointer transition-all ${
                 viewType === 'list' 
-                  ? 'bg-white dark:bg-[#13151d] text-blue-600 dark:text-blue-400 shadow-sm border border-slate-200/20 dark:border-slate-800/40' 
-                  : 'text-slate-400 hover:text-slate-650 dark:hover:text-slate-200'
+                  ? 'bg-white dark:bg-gray-800 text-blue-600 dark:text-blue-400 shadow-sm border border-gray-200/20 dark:border-gray-700/40' 
+                  : 'text-gray-400 hover:text-gray-600 dark:hover:text-gray-200'
               }`}
               title="List Table View"
             >
@@ -175,7 +175,7 @@ export default function Leads() {
       </div>
 
       {/* ================= SEARCH & FILTER ================= */}
-      <div className="bg-white dark:bg-[#13151d] border border-slate-200 dark:border-slate-800 p-4 rounded-2xl shadow-sm flex flex-col gap-4">
+      <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 p-4 rounded-2xl shadow-sm flex flex-col gap-4">
         {/* Search Bar */}
         <SearchBar value={searchQuery} onChange={setSearchQuery} />
         
@@ -259,16 +259,16 @@ export default function Leads() {
 
           {/* Modal content container card sheet */}
           {/* Mobile: full screen, no rounded corners, fills viewport. Tablet+: centered modal with max-w-lg */}
-          <div className="relative bg-white dark:bg-[#13151d] md:border md:border-slate-200 dark:md:border-slate-800 w-full min-h-screen md:min-h-0 md:max-w-lg md:rounded-2xl shadow-2xl overflow-y-auto md:overflow-hidden z-10 animate-scale-up flex flex-col">
+          <div className="relative bg-white dark:bg-gray-800 md:border md:border-gray-200 dark:md:border-gray-700 w-full min-h-screen md:min-h-0 md:max-w-lg md:rounded-2xl shadow-2xl overflow-y-auto md:overflow-hidden z-10 animate-scale-up flex flex-col">
             {/* Modal Header */}
-            <div className="px-6 py-4.5 border-b border-slate-100 dark:border-slate-850 flex items-center justify-between bg-slate-50/50 dark:bg-slate-900/10 shrink-0">
-              <h3 className="font-display font-black text-sm text-slate-900 dark:text-white">
+            <div className="px-6 py-4.5 border-b border-gray-100 dark:border-gray-700 flex items-center justify-between bg-gray-50/50 dark:bg-gray-900/10 shrink-0">
+              <h3 className="font-display font-black text-sm text-gray-900 dark:text-white">
                 {selectedLead ? `Edit Details: ${selectedLead.name}` : 'Introduce Opportunity Deal'}
               </h3>
               {/* Close Button with >=44x44px tap target size */}
               <button 
                 onClick={() => setIsModalOpen(false)}
-                className="w-11 h-11 flex items-center justify-center text-slate-400 hover:text-slate-650 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full cursor-pointer transition-colors"
+                className="w-11 h-11 flex items-center justify-center text-gray-400 hover:text-gray-600 dark:hover:text-gray-250 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-full cursor-pointer transition-colors"
                 aria-label="Close form"
               >
                 <X size={15} />

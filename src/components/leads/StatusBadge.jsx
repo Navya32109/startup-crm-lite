@@ -37,7 +37,7 @@ export default function StatusBadge({ status }) {
         return 'bg-indigo-500/10 text-indigo-600 border-indigo-500/20';
       case 'new':
       default:
-        return 'bg-slate-500/10 text-slate-500 border-slate-500/20 dark:bg-slate-400/10 dark:text-slate-400';
+        return 'bg-gray-500/10 text-gray-500 border-gray-500/20 dark:bg-gray-400/10 dark:text-gray-400';
     }
   };
 

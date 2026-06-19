@@ -43,11 +43,11 @@ const CustomTooltip = ({ active, payload }) => {
   if (active && payload && payload.length) {
     const data = payload[0].payload;
     return (
-      <div className="bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 p-3 rounded-xl shadow-xl text-[11px] animate-fade-in select-none">
-        <p className="font-extrabold text-slate-950 dark:text-white uppercase tracking-wide">
+      <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 p-3 rounded-xl shadow-xl text-[11px] animate-fade-in select-none">
+        <p className="font-extrabold text-gray-900 dark:text-white uppercase tracking-wide">
           {data.name}
         </p>
-        <p className="text-slate-550 dark:text-slate-400 mt-1 font-semibold">
+        <p className="text-gray-500 dark:text-gray-400 mt-1 font-semibold">
           {data.value} {data.value === 1 ? 'Lead' : 'Leads'}
         </p>
         <p className="text-blue-600 dark:text-blue-400 font-black text-xs mt-0.5">
@@ -79,22 +79,22 @@ export default function PieChartCard({ data = [], totalLeads = 0 }) {
   const hasData = data && data.length > 0;
 
   return (
-    <div className="bg-white dark:bg-[#13151d] border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between h-[360px]">
+    <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between h-auto min-h-[360px] md:h-[360px]">
       
       {/* Panel Header */}
       <div>
-        <h3 className="font-display font-bold text-slate-900 dark:text-white text-sm">
+        <h3 className="font-display font-bold text-gray-900 dark:text-white text-sm">
           Lead Status Distribution
         </h3>
-        <p className="text-[10px] text-slate-450 dark:text-slate-500">
+        <p className="text-[10px] text-gray-500 dark:text-gray-450">
           Volumetric breakdown of lead counts across pipeline lifecycle stages.
         </p>
       </div>
 
       {!hasData ? (
-        <div className="flex flex-col items-center justify-center h-48 text-slate-400 dark:text-slate-600 select-none">
-          <Inbox size={28} className="mb-2 text-slate-300 dark:text-slate-700" />
-          <span className="text-xs font-semibold uppercase tracking-wider text-slate-400">No status metrics</span>
+        <div className="flex flex-col items-center justify-center h-48 text-gray-400 dark:text-gray-500 select-none">
+          <Inbox size={28} className="mb-2 text-gray-300 dark:text-gray-600" />
+          <span className="text-xs font-semibold uppercase tracking-wider text-gray-400 dark:text-gray-500">No status metrics</span>
         </div>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-12 gap-4 items-center">
@@ -104,10 +104,10 @@ export default function PieChartCard({ data = [], totalLeads = 0 }) {
             
             {/* Center Text Display */}
             <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none select-none">
-              <span className="text-2xl font-display font-black text-slate-900 dark:text-white">
+              <span className="text-2xl font-display font-black text-gray-900 dark:text-white">
                 {totalLeads}
               </span>
-              <span className="text-[9px] text-slate-400 dark:text-slate-500 font-bold uppercase tracking-wider">
+              <span className="text-[9px] text-gray-400 dark:text-gray-500 font-bold uppercase tracking-wider">
                 Total Leads
               </span>
             </div>
@@ -149,7 +149,7 @@ export default function PieChartCard({ data = [], totalLeads = 0 }) {
                 key={entry.name}
                 className={`flex items-center justify-between py-1 px-1.5 rounded-lg border transition-all select-none ${
                   activeIndex === index
-                    ? 'bg-slate-50 dark:bg-slate-900/60 border-slate-200 dark:border-slate-800'
+                    ? 'bg-gray-50 dark:bg-gray-700/60 border-gray-200 dark:border-gray-700'
                     : 'border-transparent'
                 }`}
                 onMouseEnter={() => setActiveIndex(index)}
@@ -160,13 +160,13 @@ export default function PieChartCard({ data = [], totalLeads = 0 }) {
                     className="h-2 w-2 rounded-full shrink-0" 
                     style={{ backgroundColor: entry.color }}
                   ></span>
-                  <span className="font-semibold text-slate-650 dark:text-slate-350 truncate">
+                  <span className="font-semibold text-gray-600 dark:text-gray-400 truncate">
                     {entry.name}
                   </span>
                 </div>
                 
-                <div className="font-display font-black text-slate-900 dark:text-white shrink-0 pl-1 text-[11px]">
-                  {entry.value} <span className="text-slate-400 dark:text-slate-550 font-normal">({entry.percentage}%)</span>
+                <div className="font-display font-black text-gray-900 dark:text-white shrink-0 pl-1 text-[11px]">
+                  {entry.value} <span className="text-gray-400 dark:text-gray-500 font-normal">({entry.percentage}%)</span>
                 </div>
               </div>
             ))}

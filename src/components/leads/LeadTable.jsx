@@ -1,5 +1,4 @@
-import React from 'react';
-import { Edit2, Trash2, Mail, Building2, Calendar, DollarSign } from 'lucide-react';
+import { Edit2, Trash2, Mail, Building2, Calendar } from 'lucide-react';
 import StatusBadge from './StatusBadge';
 
 /**
@@ -41,12 +40,12 @@ import StatusBadge from './StatusBadge';
  */
 export default function LeadTable({ leads = [], onEditClick, onDeleteClick }) {
   return (
-    <div className="bg-white dark:bg-[#13151d] border border-slate-200/80 dark:border-slate-800/80 rounded-2xl overflow-hidden shadow-sm">
+    <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl overflow-hidden shadow-sm">
       <div className="overflow-x-auto">
         <table className="w-full text-left border-collapse text-xs">
           <thead>
             {/* Headers row */}
-            <tr className="border-b border-slate-200 dark:border-slate-850 bg-slate-50/50 dark:bg-slate-900/20 text-slate-400 dark:text-slate-500 font-bold select-none">
+            <tr className="border-b border-gray-200 dark:border-gray-700 bg-gray-50/50 dark:bg-gray-900/20 text-gray-500 dark:text-gray-400 font-bold select-none">
               <th className="p-4">Name</th>
               <th className="p-4">Company</th>
               <th className="p-4">Stage Status</th>
@@ -58,10 +57,10 @@ export default function LeadTable({ leads = [], onEditClick, onDeleteClick }) {
             </tr>
           </thead>
           
-          <tbody className="divide-y divide-slate-100 dark:divide-slate-800/80 text-slate-700 dark:text-slate-300">
+          <tbody className="divide-y divide-gray-150 dark:divide-gray-700 text-gray-755 dark:text-gray-300">
             {leads.length === 0 ? (
               <tr>
-                <td colSpan="8" className="p-8 text-center text-slate-400 select-none">
+                <td colSpan="8" className="p-8 text-center text-gray-400 select-none">
                   No prospects matched the current filters.
                 </td>
               </tr>
@@ -69,17 +68,17 @@ export default function LeadTable({ leads = [], onEditClick, onDeleteClick }) {
               leads.map((lead) => (
                 <tr 
                   key={lead.id} 
-                  className="hover:bg-slate-50/70 dark:hover:bg-slate-800/10 transition-colors group"
+                  className="hover:bg-gray-50/70 dark:hover:bg-gray-900/10 transition-colors group"
                 >
                   {/* Name */}
-                  <td className="p-4 font-bold text-slate-950 dark:text-white">
+                  <td className="p-4 font-bold text-gray-900 dark:text-white">
                     {lead.name}
                   </td>
                   
                   {/* Company */}
                   <td className="p-4">
                     <div className="flex items-center gap-1.5">
-                      <Building2 size={12} className="text-slate-400 shrink-0" />
+                      <Building2 size={12} className="text-gray-400 shrink-0" />
                       <span>{lead.company}</span>
                     </div>
                   </td>
@@ -90,51 +89,51 @@ export default function LeadTable({ leads = [], onEditClick, onDeleteClick }) {
                   </td>
                   
                   {/* Email */}
-                  <td className="p-4 font-mono select-all text-slate-500 dark:text-slate-400 hidden lg:table-cell">
+                  <td className="p-4 font-mono select-all text-gray-500 dark:text-gray-400 hidden lg:table-cell">
                     <div className="flex items-center gap-1.5 min-w-0">
-                      <Mail size={12} className="text-slate-400 shrink-0" />
+                      <Mail size={12} className="text-gray-400 shrink-0" />
                       <span>{lead.email}</span>
                     </div>
                   </td>
                   
                   {/* Source */}
                   <td className="p-4 hidden lg:table-cell">
-                    <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-slate-50 dark:bg-slate-850 text-slate-400 border border-slate-100 dark:border-slate-800">
+                    <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-gray-50 dark:bg-gray-900 text-gray-400 border border-gray-200 dark:border-gray-700">
                       {lead.source}
                     </span>
                   </td>
 
                   {/* Value */}
-                  <td className="p-4 font-bold text-slate-900 dark:text-slate-200 text-right font-mono">
+                  <td className="p-4 font-bold text-gray-900 dark:text-white text-right font-mono">
                     ${lead.value ? lead.value.toLocaleString() : '0'}
                   </td>
                   
                   {/* Date Created */}
-                  <td className="p-4 text-slate-450 dark:text-slate-500 hidden lg:table-cell">
+                  <td className="p-4 text-gray-500 dark:text-gray-400 hidden lg:table-cell">
                     <div className="flex items-center gap-1.5">
-                      <Calendar size={12} className="text-slate-400 shrink-0" />
+                      <Calendar size={12} className="text-gray-400 shrink-0" />
                       <span>{lead.createdDate}</span>
                     </div>
                   </td>
                   
                   {/* Inline Action Button Options */}
-                  <td className="p-4 text-center">
-                    <div className="flex items-center justify-center gap-1.5">
+                  <td className="p-2 md:p-4 text-center">
+                    <div className="flex items-center justify-center gap-2">
                       <button
                         onClick={() => onEditClick(lead)}
-                        className="p-1.5 text-slate-400 hover:text-blue-600 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg cursor-pointer transition-colors"
+                        className="w-11 h-11 lg:w-8 lg:h-8 flex items-center justify-center text-gray-450 hover:text-blue-600 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg cursor-pointer transition-colors"
                         title="Edit Details"
                         aria-label={`Edit ${lead.name}`}
                       >
-                        <Edit2 size={13} />
+                        <Edit2 size={15} className="lg:size-3.5" />
                       </button>
                       <button
                         onClick={() => onDeleteClick(lead.id)}
-                        className="p-1.5 text-slate-400 hover:text-rose-500 hover:bg-slate-100 dark:hover:bg-slate-850 rounded-lg cursor-pointer transition-colors"
+                        className="w-11 h-11 lg:w-8 lg:h-8 flex items-center justify-center text-gray-455 hover:text-rose-500 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg cursor-pointer transition-colors"
                         title="Delete Lead"
                         aria-label={`Delete ${lead.name}`}
                       >
-                        <Trash2 size={13} />
+                        <Trash2 size={15} className="lg:size-3.5" />
                       </button>
                     </div>
                   </td>
