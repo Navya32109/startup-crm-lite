@@ -1,7 +1,7 @@
 // Import React and standard state/lifecycle hooks for event handling and DOM manipulation
 import React, { useState, useEffect, useRef } from 'react';
 // Import routing hooks for page-level transitions and location verification
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 // Import context hooks to fetch leads records for global searches
 import { useLeads } from '../../context/LeadContext';
 // Import the newly created Sidebar component containing navigation controls
@@ -21,8 +21,9 @@ import { Search, Command } from 'lucide-react';
 export default function Layout({ children }) {
   // React Router navigate API reference
   const navigate = useNavigate();
+  const location = useLocation();
   // Fetch existing leads list from context to enable global searching
-  const { leads } = useLeads();
+  const { leads = [] } = useLeads();
   
   // State to toggle the visible active state of the Search dialog modal
   const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -119,6 +120,16 @@ export default function Layout({ children }) {
     setIsSearchOpen(false); // Close modal
     navigate(`/leads?select=${leadId}`); // Navigate to leads page and select specific lead card
   };
+
+  const isAuthPage = ['/login', '/register'].includes(location.pathname);
+
+  if (isAuthPage) {
+    return (
+      <div className="min-h-screen bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-white transition-colors duration-200 animate-fade-in">
+        {children}
+      </div>
+    );
+  }
 
   return (
     // Outer app viewport wrapper matching global canvas background and font styles

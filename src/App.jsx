@@ -4,6 +4,7 @@ import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 // Import ThemeProvider to manage application light/dark appearance context
 import { ThemeProvider } from './context/ThemeContext';
+import { AuthProvider } from './context/AuthContext';
 // Import LeadProvider to manage client leads data state context
 import { LeadProvider } from './context/LeadContext';
 // Import the Layout component wrapping the sidebar and page headers
@@ -19,29 +20,32 @@ function App() {
   return (
     // Wrap with ThemeProvider to grant children access to light/dark themes
     <ThemeProvider>
-      {/* Wrap with LeadProvider to grant children access to leads CRUD actions */}
-      <LeadProvider>
-        {/* Wrap with BrowserRouter to enable React Router DOM navigation */}
-        <BrowserRouter>
-          {/* Wrap routes inside the Layout component (includes sidebar layout) */}
-          <Layout>
-            {/* Render AppRoutes resolving paths to Dashboard, Leads, Analytics */}
-            <AppRoutes />
-          </Layout>
-          {/* Include Toaster notification element for toast popups config */}
-          <Toaster 
-            // Position toast notifications in the top-right corner
-            position="top-right"
-            // Configure custom dark mode styling properties for popup boxes
-            toastOptions={{
-              // Apply rounded dark slate cards styling on dark mode
-              className: 'dark:bg-gray-900 dark:text-white dark:border dark:border-gray-700',
-              // Display notifications on the screen for 3 seconds (3000ms)
-              duration: 3000,
-            }}
-          />
-        </BrowserRouter>
-      </LeadProvider>
+      {/* Wrap with BrowserRouter to enable React Router DOM navigation and useNavigate in contexts */}
+      <BrowserRouter>
+        {/* Wrap with AuthProvider to grant children access to authentication context */}
+        <AuthProvider>
+          {/* Wrap with LeadProvider to grant children access to leads CRUD actions */}
+          <LeadProvider>
+            {/* Wrap routes inside the Layout component (includes sidebar layout) */}
+            <Layout>
+              {/* Render AppRoutes resolving paths to Dashboard, Leads, Analytics */}
+              <AppRoutes />
+            </Layout>
+            {/* Include Toaster notification element for toast popups config */}
+            <Toaster 
+              // Position toast notifications in the top-right corner
+              position="top-right"
+              // Configure custom dark mode styling properties for popup boxes
+              toastOptions={{
+                // Apply rounded dark slate cards styling on dark mode
+                className: 'dark:bg-gray-900 dark:text-white dark:border dark:border-gray-700',
+                // Display notifications on the screen for 3 seconds (3000ms)
+                duration: 3000,
+              }}
+            />
+          </LeadProvider>
+        </AuthProvider>
+      </BrowserRouter>
     </ThemeProvider>
   );
 }

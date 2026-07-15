@@ -1,13 +1,15 @@
 // Import core React hooks for layout and UI state control
 import React, { useState, useRef, useEffect } from 'react';
 // Import NavLink from react-router-dom to handle navigation links with built-in active state logic
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 // Import custom theme state hook to toggle and consume theme styling (dark/light)
 import { useTheme } from '../../context/ThemeContext';
 // Import custom DarkModeToggle component
 import DarkModeToggle from './DarkModeToggle';
 // Import custom lead context hook to display dynamic badge counts for 'New' leads
 import { useLeads } from '../../context/LeadContext';
+// Import custom auth context hook to display user profile details
+import { useAuth } from '../../context/AuthContext';
 // Import specialized UI icons from lucide-react library
 import { 
   LayoutDashboard, 
@@ -25,7 +27,10 @@ import {
   User, 
   Settings, 
   HelpCircle,
-  FolderDot
+  FolderDot,
+  Mail,
+  MessageSquare,
+  BookOpen
 } from 'lucide-react';
 
 /**
@@ -41,6 +46,8 @@ export default function Sidebar({ setIsSearchOpen }) {
   const { toggleTheme, isDark } = useTheme();
   // Pull lead records from LeadContext
   const { leads } = useLeads();
+  const navigate = useNavigate();
+  const { user, logout } = useAuth();
   
   // State to manage whether the desktop sidebar is minimized (w-16) or expanded (w-64)
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
@@ -48,9 +55,41 @@ export default function Sidebar({ setIsSearchOpen }) {
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   // State to toggle the user profile settings popup dropdown
   const [isProfileOpen, setIsProfileOpen] = useState(false);
+  // State for Help Support Modal
+  const [isHelpOpen, setIsHelpOpen] = useState(false);
   
   // Reference container hook to capture the profile dropdown element for detecting outside clicks
   const profileDropdownRef = useRef(null);
+
+  // Compute initials for the avatar dynamically
+  const getInitials = () => {
+    if (!user?.name) return 'U';
+    return user.name
+      .split(' ')
+      .map(part => part[0])
+      .join('')
+      .toUpperCase()
+      .slice(0, 2);
+  };
+
+  // Keyboard and scroll listeners for Help modal
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') {
+        setIsHelpOpen(false);
+      }
+    };
+    if (isHelpOpen) {
+      window.addEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = '';
+    };
+  }, [isHelpOpen]);
 
   // Calculate the total number of unread/new leads in real-time to render on the Leads link badge
   const newLeadsCount = leads.filter(l => l.status === 'New').length;
@@ -173,28 +212,40 @@ export default function Sidebar({ setIsSearchOpen }) {
               aria-label="User settings dropdown"
             >
               <div className="h-8 w-8 rounded-full bg-gradient-to-tr from-blue-600 to-indigo-600 flex items-center justify-center font-bold text-white text-xs shadow-sm ring-2 ring-gray-100 dark:ring-gray-700 select-none shrink-0">
-                NY
+                {getInitials()}
               </div>
               <div className="hidden lg:flex flex-col flex-1 min-w-0">
-                <p className="text-xs font-semibold truncate text-gray-900 dark:text-white leading-tight">Navya</p>
-                <p className="text-[10px] text-gray-400 dark:text-gray-500 truncate mt-0.5 leading-none">navya@startup.co</p>
+                <p className="text-xs font-semibold truncate text-gray-900 dark:text-white leading-tight">{user?.name || 'User'}</p>
+                <p className="text-[10px] text-gray-400 dark:text-gray-500 truncate mt-0.5 leading-none">{user?.email || ''}</p>
               </div>
             </button>
 
             {/* Profile Dropdown Context Settings Menu overlay */}
             {isProfileOpen && (
               <div className="absolute bottom-14 left-1/2 -translate-x-1/2 lg:translate-x-0 lg:left-0 w-40 lg:w-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl shadow-xl p-1.5 space-y-0.5 z-50">
-                <button className="w-full flex items-center gap-2 px-2.5 py-1.5 text-xs text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-900/50 rounded-lg cursor-pointer">
+                <button 
+                  onClick={() => { navigate('/profile'); setIsProfileOpen(false); }}
+                  className="w-full flex items-center gap-2 px-2.5 py-1.5 text-xs text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-900/50 rounded-lg cursor-pointer"
+                >
                   <User size={12} /> My Profile
                 </button>
-                <button className="w-full flex items-center gap-2 px-2.5 py-1.5 text-xs text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-900/50 rounded-lg cursor-pointer">
+                <button 
+                  onClick={() => { navigate('/settings'); setIsProfileOpen(false); }}
+                  className="w-full flex items-center gap-2 px-2.5 py-1.5 text-xs text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-900/50 rounded-lg cursor-pointer"
+                >
                   <Settings size={12} /> Settings
                 </button>
-                <button className="w-full flex items-center gap-2 px-2.5 py-1.5 text-xs text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-900/50 rounded-lg cursor-pointer">
+                <button 
+                  onClick={() => { setIsHelpOpen(true); setIsProfileOpen(false); }}
+                  className="w-full flex items-center gap-2 px-2.5 py-1.5 text-xs text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-900/50 rounded-lg cursor-pointer"
+                >
                   <HelpCircle size={12} /> Help
                 </button>
                 <div className="border-t border-gray-100 dark:border-gray-700/80 my-1"></div>
-                <button className="w-full flex items-center gap-2 px-2.5 py-1.5 text-xs text-rose-500 hover:bg-rose-55 dark:hover:bg-rose-950/20 rounded-lg cursor-pointer">
+                <button 
+                  onClick={() => { logout(); setIsProfileOpen(false); }}
+                  className="w-full flex items-center gap-2 px-2.5 py-1.5 text-xs text-rose-500 hover:bg-rose-55 dark:hover:bg-rose-950/20 rounded-lg cursor-pointer"
+                >
                   <LogOut size={12} /> Sign Out
                 </button>
               </div>
@@ -331,18 +382,141 @@ export default function Sidebar({ setIsSearchOpen }) {
               {/* Mobile theme switch toggler with 44px min tap target */}
               <DarkModeToggle />
 
+              {/* Mobile navigation links for profile/settings/help */}
+              <div className="space-y-1.5 border-t border-gray-150 dark:border-gray-750 pt-4">
+                <button 
+                  onClick={() => { navigate('/profile'); setIsMobileOpen(false); }}
+                  className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-semibold text-gray-550 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-55 dark:hover:bg-gray-900/40 cursor-pointer"
+                >
+                  <User size={16} />
+                  <span>My Profile</span>
+                </button>
+                <button 
+                  onClick={() => { navigate('/settings'); setIsMobileOpen(false); }}
+                  className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-semibold text-gray-555 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-55 dark:hover:bg-gray-900/40 cursor-pointer"
+                >
+                  <Settings size={16} />
+                  <span>Settings</span>
+                </button>
+                <button 
+                  onClick={() => { setIsHelpOpen(true); setIsMobileOpen(false); }}
+                  className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-semibold text-gray-555 dark:text-gray-400 hover:text-gray-905 dark:hover:text-white hover:bg-gray-55 dark:hover:bg-gray-900/40 cursor-pointer"
+                >
+                  <HelpCircle size={16} />
+                  <span>Help & Support</span>
+                </button>
+                <button 
+                  onClick={() => { logout(); setIsMobileOpen(false); }}
+                  className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-semibold text-rose-500 hover:bg-rose-55 dark:hover:bg-rose-950/20 cursor-pointer"
+                >
+                  <LogOut size={16} />
+                  <span>Sign Out</span>
+                </button>
+              </div>
+
               {/* User details item */}
-              <div className="flex items-center gap-3 px-2 py-1">
-                <div className="h-9 w-9 rounded-full bg-gradient-to-tr from-blue-600 to-indigo-605 flex items-center justify-center font-bold text-white text-xs">
-                  NY
+              <div className="flex items-center gap-3 px-2 py-1 border-t border-gray-150 dark:border-gray-750 pt-4">
+                <div className="h-9 w-9 rounded-full bg-gradient-to-tr from-blue-600 to-indigo-605 flex items-center justify-center font-bold text-white text-xs shrink-0 select-none">
+                  {getInitials()}
                 </div>
                 <div className="flex-1 min-w-0">
-                  <p className="text-xs font-semibold truncate text-gray-900 dark:text-white">Navya</p>
-                  <p className="text-[10px] text-gray-400 dark:text-gray-550 truncate">navya@startup.co</p>
+                  <p className="text-xs font-semibold truncate text-gray-900 dark:text-white">{user?.name || 'User'}</p>
+                  <p className="text-[10px] text-gray-400 dark:text-gray-550 truncate">{user?.email || ''}</p>
                 </div>
               </div>
             </div>
           </aside>
+        </div>
+      )}
+
+      {/* ================= HELP & SUPPORT MODAL ================= */}
+      {isHelpOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+          {/* Backdrop Blur/Dim Overlay */}
+          <div 
+            className="fixed inset-0 bg-gray-900/60 dark:bg-black/60 backdrop-blur-sm"
+            onClick={() => setIsHelpOpen(false)}
+          ></div>
+          
+          {/* Modal Container */}
+          <div className="relative w-full max-w-md bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl shadow-2xl p-6 pointer-events-auto z-10 animate-scale-up text-left">
+            
+            {/* Modal Header */}
+            <div className="flex items-center justify-between pb-4 border-b border-gray-150 dark:border-gray-750 mb-4">
+              <div className="flex items-center gap-2 text-blue-600 dark:text-blue-500">
+                <HelpCircle size={20} />
+                <h3 className="font-bold text-base text-gray-955 dark:text-white">Help & Support</h3>
+              </div>
+              <button
+                onClick={() => setIsHelpOpen(false)}
+                className="w-8 h-8 rounded-full flex items-center justify-center text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 hover:text-gray-750 dark:hover:text-white transition-all cursor-pointer"
+              >
+                <X size={16} />
+              </button>
+            </div>
+            
+            {/* Modal Message */}
+            <p className="text-xs text-gray-600 dark:text-gray-300 leading-relaxed mb-6 font-normal">
+              Welcome to the CRM Support Center. Need help managing your pipelines or leads? Browse our resources below or contact support.
+            </p>
+
+            {/* Support Information Cards */}
+            <div className="space-y-3.5 mb-6">
+              
+              {/* Card 1: Email Support */}
+              <div className="flex items-start gap-3.5 p-3 rounded-xl bg-gray-50 dark:bg-gray-900/40 border border-gray-150 dark:border-gray-750">
+                <div className="h-8 w-8 rounded-lg bg-blue-50 dark:bg-blue-950/20 text-blue-600 dark:text-blue-400 flex items-center justify-center shrink-0">
+                  <Mail size={16} />
+                </div>
+                <div>
+                  <h4 className="text-xs font-bold text-gray-900 dark:text-white">Email Support</h4>
+                  <p className="text-[10px] text-gray-405 dark:text-gray-500 mt-0.5">Response within 24 hours</p>
+                  <a href="mailto:support@crmlite.com" className="text-xs font-semibold text-blue-600 dark:text-blue-400 mt-1 inline-block hover:underline">
+                    support@crmlite.com
+                  </a>
+                </div>
+              </div>
+
+              {/* Card 2: Live Chat Support */}
+              <div className="flex items-start gap-3.5 p-3 rounded-xl bg-gray-50 dark:bg-gray-900/40 border border-gray-150 dark:border-gray-750">
+                <div className="h-8 w-8 rounded-lg bg-blue-50 dark:bg-blue-955/20 text-blue-600 dark:text-blue-400 flex items-center justify-center shrink-0">
+                  <MessageSquare size={16} />
+                </div>
+                <div>
+                  <h4 className="text-xs font-bold text-gray-900 dark:text-white">Live Chat Support</h4>
+                  <p className="text-[10px] text-gray-405 dark:text-gray-500 mt-0.5">Mon–Fri, 9:00 AM–5:00 PM</p>
+                  <span className="inline-flex items-center gap-1 mt-1 text-[10px] font-semibold text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 px-2.5 py-0.5 rounded-full">
+                    <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse"></span> Available
+                  </span>
+                </div>
+              </div>
+
+              {/* Card 3: Documentation */}
+              <div className="flex items-start gap-3.5 p-3 rounded-xl bg-gray-50 dark:bg-gray-900/40 border border-gray-150 dark:border-gray-750">
+                <div className="h-8 w-8 rounded-lg bg-blue-50 dark:bg-blue-950/20 text-blue-600 dark:text-blue-400 flex items-center justify-center shrink-0">
+                  <BookOpen size={16} />
+                </div>
+                <div>
+                  <h4 className="text-xs font-bold text-gray-900 dark:text-white">Documentation</h4>
+                  <p className="text-[10px] text-gray-405 dark:text-gray-500 mt-0.5">Search tutorials and API references</p>
+                  <a href="https://docs.crmlite.com" target="_blank" rel="noreferrer" className="text-xs font-semibold text-blue-600 dark:text-blue-400 mt-1 inline-block hover:underline">
+                    docs.crmlite.com →
+                  </a>
+                </div>
+              </div>
+
+            </div>
+
+            {/* Bottom Close Support button */}
+            <div className="flex justify-end border-t border-gray-150 dark:border-gray-750 pt-4">
+              <button
+                onClick={() => setIsHelpOpen(false)}
+                className="w-full sm:w-auto bg-gray-100 hover:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-200 text-xs font-semibold px-4 py-2.5 rounded-xl cursor-pointer text-center transition-all"
+              >
+                Close Support
+              </button>
+            </div>
+          </div>
         </div>
       )}
     </>
