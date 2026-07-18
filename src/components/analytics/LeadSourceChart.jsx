@@ -41,17 +41,24 @@ export default function LeadSourceChart({ data = [] }) {
   const { isDark } = useTheme();
 
   // Dynamic theme colors
-  const textColor = isDark ? '#9CA3AF' : '#6B7280';
-  const gridColor = isDark ? '#374151' : '#F3F4F6';
+  const textColor = isDark ? '#CBD5E1' : '#5B6475';
+  const gridColor = isDark ? '#2E3A52' : '#D9E2EF';
   
-  // Use a nice gradient-like palette or standard theme blue
-  const barColors = [
-    '#2563EB', // Blue
-    '#6366F1', // Indigo
-    '#7C3AED', // Purple
-    '#14B8A6', // Teal
-    '#F59E0B', // Amber
-    '#94A3B8'  // Slate
+  // Tokyo Night brand palette bar colors
+  const barColors = isDark ? [
+    '#6C8DFF', // Primary Dark
+    '#9EB4FF', // Secondary Dark
+    '#FFA26E', // Accent Dark
+    '#60A5FA', // Info Dark
+    '#4ADE80', // Success Dark
+    '#CBD5E1'  // Text Secondary Dark
+  ] : [
+    '#3B5CCC', // Primary Light
+    '#5E81F4', // Secondary Light
+    '#FF8F5A', // Accent Light
+    '#3B82F6', // Info Light
+    '#22C55E', // Success Light
+    '#5B6475'  // Text Secondary Light
   ];
 
   const hasData = data && data.length > 0;

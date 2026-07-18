@@ -40,9 +40,9 @@ export default function LineChartCard({ data = [] }) {
   const { isDark } = useTheme();
 
   // Dynamic theme colors
-  const textColor = isDark ? '#9CA3AF' : '#6B7280';
-  const gridColor = isDark ? '#374151' : '#F3F4F6';
-  const lineColor = STATUS_COLORS.Won; // Success Green: #22C55E
+  const textColor = isDark ? '#CBD5E1' : '#5B6475';
+  const gridColor = isDark ? '#2E3A52' : '#D9E2EF';
+  const lineColor = isDark ? '#4ADE80' : '#22C55E';
 
   const hasData = data && data.length > 0;
 

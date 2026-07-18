@@ -37,13 +37,13 @@ import React from 'react';
 export default function PipelineOverview({ leads = [] }) {
   // Define CRM stages in logical progression order
   const stages = [
-    { key: 'New', label: 'New', colorBg: 'bg-[#2563EB]', colorText: 'text-[#2563EB]' },
-    { key: 'Contacted', label: 'Contacted', colorBg: 'bg-indigo-500', colorText: 'text-indigo-500' },
-    { key: 'Qualified', label: 'Qualified', colorBg: 'bg-purple-500', colorText: 'text-purple-500' },
-    { key: 'Proposal', label: 'Proposal', colorBg: 'bg-pink-500', colorText: 'text-pink-500' },
-    { key: 'Negotiation', label: 'Negotiation', colorBg: 'bg-[#F59E0B]', colorText: 'text-[#F59E0B]' },
-    { key: 'Won', label: 'Won', colorBg: 'bg-[#22C55E]', colorText: 'text-[#22C55E]' },
-    { key: 'Lost', label: 'Lost', colorBg: 'bg-[#EF4444]', colorText: 'text-[#EF4444]' }
+    { key: 'New', label: 'New', colorBg: 'bg-[#5B6475] dark:bg-[#CBD5E1]', colorText: 'text-[#5B6475] dark:text-[#CBD5E1]' },
+    { key: 'Contacted', label: 'Contacted', colorBg: 'bg-[#3B5CCC] dark:bg-[#6C8DFF]', colorText: 'text-[#3B5CCC] dark:text-[#6C8DFF]' },
+    { key: 'Qualified', label: 'Qualified', colorBg: 'bg-[#5E81F4] dark:bg-[#9EB4FF]', colorText: 'text-[#5E81F4] dark:text-[#9EB4FF]' },
+    { key: 'Proposal', label: 'Proposal', colorBg: 'bg-[#FF8F5A] dark:bg-[#FFA26E]', colorText: 'text-[#FF8F5A] dark:text-[#FFA26E]' },
+    { key: 'Negotiation', label: 'Negotiation', colorBg: 'bg-[#FF8F5A] dark:bg-[#FFA26E]', colorText: 'text-[#FF8F5A] dark:text-[#FFA26E]' },
+    { key: 'Won', label: 'Won', colorBg: 'bg-[#22C55E] dark:bg-[#4ADE80]', colorText: 'text-[#22C55E] dark:text-[#4ADE80]' },
+    { key: 'Lost', label: 'Lost', colorBg: 'bg-[#EF4444] dark:bg-[#F87171]', colorText: 'text-[#EF4444] dark:text-[#F87171]' }
   ];
 
   // Calculate sum total valuation of active leads (excluding Lost deals from pipeline target value)

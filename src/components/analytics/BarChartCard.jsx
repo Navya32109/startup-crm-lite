@@ -40,9 +40,9 @@ export default function BarChartCard({ data = [] }) {
   const { isDark } = useTheme();
 
   // Dynamic theme colors
-  const textColor = isDark ? '#9CA3AF' : '#6B7280';
-  const gridColor = isDark ? '#374151' : '#F3F4F6';
-  const barColor = STATUS_COLORS.Contacted; // Primary Blue: #2563EB
+  const textColor = isDark ? '#CBD5E1' : '#5B6475';
+  const gridColor = isDark ? '#2E3A52' : '#D9E2EF';
+  const barColor = isDark ? '#6C8DFF' : '#3B5CCC';
 
   const hasData = data && data.length > 0 && data.some(d => d.count > 0);
 

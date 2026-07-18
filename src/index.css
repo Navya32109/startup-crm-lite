@@ -3,15 +3,126 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
-@theme{
-  --color-primary: #2563EB;
-  --color-success: #22C55E;
-  --color-warning: #F59E0B;
-  --color-danger: #EF4444;
+/* ================= TOKYO NIGHT BRAND DESIGN SYSTEM ================= */
+:root {
+  /* Tokyo Night Light Mode */
+  --color-bg-app: #F8FAFC;
+  --color-bg-surface: #EDF2F7;
+  --color-brand-primary: #3B5CCC;
+  --color-brand-secondary: #5E81F4;
+  --color-brand-accent: #FF8F5A;
+  --color-text-main: #1A2330;
+  --color-text-secondary: #5B6475;
+  --color-border-main: #D9E2EF;
+  --color-semantic-success: #22C55E;
+  --color-semantic-warning: #F59E0B;
+  --color-semantic-error: #EF4444;
+  --color-semantic-info: #3B82F6;
 
-  --color-background: #F8FAFC;
-  --color-card: #FFFFFF;
+  /* Global Body Defaults (Light Mode) */
+  --bg-body: var(--color-bg-app);
+  --bg-card: var(--color-bg-surface);
+  --text-body: var(--color-text-main);
+  --text-muted: var(--color-text-secondary);
+  --border-body: var(--color-border-main);
 
-  --color-text-dark: #0F172A;
-  --color-text-gray: #64748B;
+  /* Tailwind Color Scale Overrides (Light Mode) */
+  --color-gray-50: #F8FAFC;
+  --color-gray-100: #EDF2F7;
+  --color-gray-150: #E4EAEF;
+  --color-gray-200: #D9E2EF;
+  --color-gray-300: #CBD5E1;
+  --color-gray-400: #94A3B8;
+  --color-gray-500: #5B6475;
+  --color-gray-600: #475569;
+  --color-gray-700: #334155;
+  --color-gray-800: #1A2330;
+  --color-gray-900: #1A2330;
+
+  --color-blue-50: #EEF2FF;
+  --color-blue-100: #E0E7FF;
+  --color-blue-400: #5E81F4;
+  --color-blue-500: #5E81F4;
+  --color-blue-600: #3B5CCC;
+  --color-blue-700: #2D48A4;
+
+  --color-amber-500: #FF8F5A;
+  --color-orange-500: #FF8F5A;
+}
+
+.dark {
+  /* Tokyo Night Dark Mode */
+  --color-bg-app: #111827;
+  --color-bg-surface: #1B2435;
+  --color-brand-primary: #6C8DFF;
+  --color-brand-secondary: #9EB4FF;
+  --color-brand-accent: #FFA26E;
+  --color-text-main: #F8FAFC;
+  --color-text-secondary: #CBD5E1;
+  --color-border-main: #2E3A52;
+  --color-semantic-success: #4ADE80;
+  --color-semantic-warning: #FBBF24;
+  --color-semantic-error: #F87171;
+  --color-semantic-info: #60A5FA;
+
+  /* Global Body Defaults (Dark Mode) */
+  --bg-body: var(--color-bg-app);
+  --bg-card: var(--color-bg-surface);
+  --text-body: var(--color-text-main);
+  --text-muted: var(--color-text-secondary);
+  --border-body: var(--color-border-main);
+
+  /* Tailwind Color Scale Overrides (Dark Mode) */
+  --color-gray-50: #F8FAFC;
+  --color-gray-100: #CBD5E1;
+  --color-gray-200: #94A3B8;
+  --color-gray-300: #CBD5E1;
+  --color-gray-400: #CBD5E1;
+  --color-gray-500: #94A3B8;
+  --color-gray-600: #475569;
+  --color-gray-700: #2E3A52;
+  --color-gray-800: #1B2435;
+  --color-gray-900: #111827;
+
+  --color-blue-300: #9EB4FF;
+  --color-blue-400: #9EB4FF;
+  --color-blue-500: #6C8DFF;
+  --color-blue-600: #6C8DFF;
+  --color-blue-700: #5E81F4;
+
+  --color-amber-400: #FFA26E;
+  --color-orange-400: #FFA26E;
+}
+
+@theme {
+  --color-tokyo-bg: var(--color-bg-app);
+  --color-tokyo-surface: var(--color-bg-surface);
+  --color-tokyo-primary: var(--color-brand-primary);
+  --color-tokyo-secondary: var(--color-brand-secondary);
+  --color-tokyo-accent: var(--color-brand-accent);
+  --color-tokyo-text: var(--color-text-main);
+  --color-tokyo-text-secondary: var(--color-text-secondary);
+  --color-tokyo-border: var(--color-border-main);
+
+  --color-primary: var(--color-brand-primary);
+  --color-secondary: var(--color-brand-secondary);
+  --color-accent: var(--color-brand-accent);
+
+  --color-success: var(--color-semantic-success);
+  --color-warning: var(--color-semantic-warning);
+  --color-error: var(--color-semantic-error);
+  --color-danger: var(--color-semantic-error);
+  --color-info: var(--color-semantic-info);
+
+  --color-background: var(--color-bg-app);
+  --color-card: var(--color-bg-surface);
+  --color-text-dark: var(--color-text-main);
+  --color-text-gray: var(--color-text-secondary);
+}
+
+/* Global Canvas Background & Text Styling */
+body {
+  background-color: var(--color-bg-app);
+  color: var(--color-text-main);
+  border-color: var(--color-border-main);
 }

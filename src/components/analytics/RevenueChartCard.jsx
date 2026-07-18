@@ -59,9 +59,9 @@ export default function RevenueChartCard({ data = [] }) {
   const { isDark } = useTheme();
 
   // Dynamic theme colors
-  const textColor = isDark ? '#94A3B8' : '#64748B';
-  const gridColor = isDark ? '#1E293B' : '#F1F5F9';
-  const revenueColor = STATUS_COLORS.Won; // Success Green: #22C55E
+  const textColor = isDark ? '#CBD5E1' : '#5B6475';
+  const gridColor = isDark ? '#2E3A52' : '#D9E2EF';
+  const revenueColor = isDark ? '#4ADE80' : '#22C55E';
 
   const hasData = data && data.length > 0 && data.some(d => d.revenue > 0);
 

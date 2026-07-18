@@ -52,19 +52,19 @@ export default function RecentLeads({ leads = [], onSelectLead }) {
   const getStatusBadgeStyle = (status) => {
     switch (status) {
       case 'Won':
-        return 'bg-green-500/10 text-[#22C55E] border-green-500/20';
+        return 'bg-green-500/10 text-[#22C55E] dark:text-[#4ADE80] border-green-500/20';
       case 'Lost':
-        return 'bg-rose-500/10 text-[#EF4444] border-rose-500/20';
+        return 'bg-rose-500/10 text-[#EF4444] dark:text-[#F87171] border-rose-500/20';
       case 'Negotiation':
-        return 'bg-amber-500/10 text-[#F59E0B] border-amber-500/20';
       case 'Proposal':
-        return 'bg-pink-500/10 text-pink-600 border-pink-500/20';
+        return 'bg-orange-500/10 text-[#FF8F5A] dark:text-[#FFA26E] border-orange-500/20';
       case 'Qualified':
-        return 'bg-purple-500/10 text-purple-600 border-purple-500/20';
+      case 'Meeting Scheduled':
+        return 'bg-blue-500/10 text-[#5E81F4] dark:text-[#9EB4FF] border-blue-500/20';
       case 'Contacted':
-        return 'bg-indigo-500/10 text-indigo-600 border-indigo-500/20';
+        return 'bg-blue-600/10 text-[#3B5CCC] dark:text-[#6C8DFF] border-blue-600/20';
       default:
-        return 'bg-blue-500/10 text-[#2563EB] border-blue-500/20';
+        return 'bg-gray-500/10 text-[#5B6475] dark:text-[#CBD5E1] border-gray-500/20';
     }
   };
 

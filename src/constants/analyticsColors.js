@@ -9,10 +9,10 @@
  * - Lost: Danger Red (#EF4444)
  */
 export const STATUS_COLORS = {
-  New: "#94A3B8",
-  Contacted: "#2563EB",
-  Meeting: "#F59E0B",
-  Proposal: "#7C3AED",
+  New: "#5B6475",
+  Contacted: "#3B5CCC",
+  Meeting: "#5E81F4",
+  Proposal: "#FF8F5A",
   Won: "#22C55E",
   Lost: "#EF4444",
 };

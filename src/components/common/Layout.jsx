@@ -211,10 +211,10 @@ export default function Layout({ children }) {
                         </span>
                         {/* Dynamic status badges colored based on deal states */}
                         <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full border ${
-                          lead.status === 'Won' ? 'bg-green-500/10 text-[#22C55E] border-green-500/20' :
-                          lead.status === 'Lost' ? 'bg-rose-500/10 text-[#EF4444] border-rose-500/20' :
-                          lead.status === 'Negotiation' ? 'bg-amber-500/10 text-[#F59E0B] border-amber-500/20' :
-                          'bg-blue-500/10 text-[#2563EB] border-blue-500/20'
+                          lead.status === 'Won' ? 'bg-green-500/10 text-[#22C55E] dark:text-[#4ADE80] border-green-500/20' :
+                          lead.status === 'Lost' ? 'bg-rose-500/10 text-[#EF4444] dark:text-[#F87171] border-rose-500/20' :
+                          lead.status === 'Negotiation' ? 'bg-orange-500/10 text-[#FF8F5A] dark:text-[#FFA26E] border-orange-500/20' :
+                          'bg-blue-600/10 text-[#3B5CCC] dark:text-[#6C8DFF] border-blue-600/20'
                         }`}>
                           {lead.status}
                         </span>

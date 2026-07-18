@@ -37,7 +37,15 @@ api.interceptors.response.use(
       }
     }
 
-    // 2. Server offline or generic network request failures
+    // 2. Rate limiting (429 Too Many Requests)
+    if (error.response && error.response.status === 429) {
+      toast.error(error.response.data?.message || 'Too many requests. Please wait a moment before trying again.', {
+        id: 'rate-limit-error',
+        duration: 5000
+      });
+    }
+
+    // 3. Server offline or generic network request failures
     if (!error.response) {
       toast.error('Cannot connect to server. Check your connection.', {
         id: 'network-error', // Prevents flooding multiple notifications on parallel fetches

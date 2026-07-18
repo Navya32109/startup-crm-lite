@@ -94,27 +94,34 @@ app.use((req, res, next) => {
 });
 
 // 6. Rate Limiting to prevent denial-of-service and brute force attacks
+const isDev = process.env.NODE_ENV !== 'production';
+
 const generalLimiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 100, // Limit each IP to 100 requests per windowMs
+  max: isDev ? 5000 : 1000, // Limit each IP per windowMs
+  standardHeaders: true,
+  legacyHeaders: false,
   message: {
     success: false,
-    message: 'Too many requests, please try again later.'
+    message: 'Too many requests from this IP, please try again later.'
   }
 });
 
 const authLimiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 10, // Limit each IP to 10 auth requests per windowMs
+  max: isDev ? 1000 : 100, // Limit login/register attempts per windowMs
+  standardHeaders: true,
+  legacyHeaders: false,
   message: {
     success: false,
-    message: 'Too many auth attempts.'
+    message: 'Too many auth attempts from this IP, please try again later.'
   }
 });
 
 // Apply rate limiters to paths
 app.use('/api/', generalLimiter);
-app.use('/api/auth/', authLimiter);
+app.use('/api/auth/login', authLimiter);
+app.use('/api/auth/register', authLimiter);
 
 // ==========================================
 // Route Registrations

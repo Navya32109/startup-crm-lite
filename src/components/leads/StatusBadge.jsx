@@ -23,21 +23,21 @@ export default function StatusBadge({ status }) {
 
     switch (stageNormalized) {
       case 'won':
-        return 'bg-green-500/10 text-[#22C55E] border-green-500/20';
+        return 'bg-green-500/10 text-[#22C55E] dark:text-[#4ADE80] border-green-500/20';
       case 'lost':
-        return 'bg-rose-500/10 text-[#EF4444] border-rose-500/20';
+        return 'bg-rose-500/10 text-[#EF4444] dark:text-[#F87171] border-rose-500/20';
       case 'meeting scheduled':
       case 'qualified':
-        return 'bg-purple-500/10 text-purple-600 border-purple-500/20';
+        return 'bg-blue-500/10 text-[#5E81F4] dark:text-[#9EB4FF] border-blue-500/20';
       case 'proposal sent':
       case 'proposal':
       case 'negotiation':
-        return 'bg-amber-500/10 text-[#F59E0B] border-amber-500/20';
+        return 'bg-orange-500/10 text-[#FF8F5A] dark:text-[#FFA26E] border-orange-500/20';
       case 'contacted':
-        return 'bg-indigo-500/10 text-indigo-600 border-indigo-500/20';
+        return 'bg-blue-600/10 text-[#3B5CCC] dark:text-[#6C8DFF] border-blue-600/20';
       case 'new':
       default:
-        return 'bg-gray-500/10 text-gray-500 border-gray-500/20 dark:bg-gray-400/10 dark:text-gray-400';
+        return 'bg-gray-500/10 text-[#5B6475] dark:text-[#CBD5E1] border-gray-500/20';
     }
   };
 
