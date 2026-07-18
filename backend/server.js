@@ -65,7 +65,7 @@ if (NODE_ENV === 'production') {
 // 3. CORS configuration to enable Cross-Origin Resource Sharing with production-ready origin validation
 const allowedOrigins = [
   process.env.FRONTEND_URL,
-  'https://your-app.vercel.app'
+  'https://startup-crm-lite-kappa.vercel.app'
 ].filter(Boolean);
 
 const corsOptions = {
